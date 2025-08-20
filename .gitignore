@@ -43,9 +43,18 @@ public/*
 !public/*.svg
 !public/vite.svg
 
-# Alternative: If you want to keep only specific files, uncomment these:
-# !public/assaf's logo (1).png
-# !public/vite.svg
+# Keep essential images for the portfolio
+!public/assaf's logo (1).png
+!public/assafP.png
+!public/pro1.png
+!public/pro2.png
+!public/pro3.png
+!public/pro1.1.png
+!public/pro2.1.png
+!public/pro3.1.png
+!public/a1.png
+!public/a2.png
+!public/a3.png
 
 # Assets folder if you have one
 src/assets/*.png
