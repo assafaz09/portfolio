@@ -263,5 +263,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **🚀 Ready to build something amazing together? Let's talk!**
 
 </div>
-#   p o r t f o l i o  
+
+---
+
+## 📁 **Important Note About Images**
+
+### 🖼️ **Missing Images?**
+The personal images and project screenshots are stored locally and **not included in the git repository** to keep the repo lightweight and fast.
+
+To run this portfolio locally with all images:
+1. **Add your personal images** to the `/public` folder:
+   - `assaf's logo (1).png` - Your logo
+   - `assafP.png` - Your main profile photo
+   - `a1 (1).png`, `a2.png`, `a3.png` - Additional photos
+   - `pro1.png`, `pro2.png`, `pro3.png` - Project screenshots
+   - `assaf azran cv.pdf` - Your CV file
+
+2. **Or update the image paths** in the code to use your own images
+
+### 📝 **Included Assets**
+✅ All SVG tech icons (React, Node.js, MongoDB, etc.)  
+✅ Source code and configuration files  
+✅ Responsive CSS and animations  
+❌ Personal photos and project images (you'll need to add these)
+
+---
+#   p o r t f o l i o 
  
