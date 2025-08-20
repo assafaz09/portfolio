@@ -46,15 +46,22 @@ public/*
 # Keep essential images for the portfolio
 !public/assaf's logo (1).png
 !public/assafP.png
+!public/assafP.jpg
+!public/assafpps.png
 !public/pro1.png
 !public/pro2.png
 !public/pro3.png
 !public/pro1.1.png
 !public/pro2.1.png
 !public/pro3.1.png
-!public/a1.png
+!public/pro2 (1).png
+!public/a1 (1).png
 !public/a2.png
 !public/a3.png
+!public/m11.jpg
+!public/p1.jpg
+!public/p2.jpg
+!public/P3.jpg
 
 # Assets folder if you have one
 src/assets/*.png
