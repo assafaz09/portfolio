@@ -1,19 +1,45 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { translations } from "../translations";
 
-export default function About({ onNavigate }) {
+export default function About({
+  onNavigate,
+  currentLanguage,
+  onLanguageChange,
+}) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const fullText = `Hi, I'm Assaf Azran, a passionate Full Stack Developer from Israel. My journey into web development began with a curiosity about how things work on the internet, and it quickly evolved into a deep passion for creating digital experiences that make a difference. Coming from a mechanical engineering background, I bring a unique problem-solving approach to every project. I love turning complex challenges into elegant, user-friendly solutions that not only work flawlessly but also look beautiful and feel intuitive to use.`;
-  
-  const shortText = `Hi, I'm Assaf Azran, a passionate Full Stack Developer from Israel. My journey into web development began with a curiosity about how things work on the internet`;
+  const fullText = translations[currentLanguage].aboutFullText;
+  const shortText = translations[currentLanguage].aboutShortText;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white overflow-x-hidden">
-      <Navbar onNavigate={onNavigate} />
+    <div
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white overflow-x-hidden"
+      dir={currentLanguage === "he" ? "rtl" : "ltr"}
+    >
+      <Navbar
+        onNavigate={onNavigate}
+        currentLanguage={currentLanguage}
+        onLanguageChange={onLanguageChange}
+      />
+
+      {/* Mobile Language Switcher - Outside Navbar */}
+      <div className="md:hidden fixed top-20 right-4 z-40">
+        <button
+          onClick={() =>
+            onLanguageChange(currentLanguage === "en" ? "he" : "en")
+          }
+          className="mobile-language-switcher bg-black/20 backdrop-blur-sm border border-cyan-500/20 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-black/30 transition-all duration-300 font-medium"
+        >
+          {currentLanguage === "en" ? "עברית" : "EN"}
+        </button>
+      </div>
 
       {/* About Page */}
-      <section className="about-page relative px-4 sm:px-6" style={{ paddingTop: "80px" }}>
+      <section
+        className="about-page relative px-4 sm:px-6"
+        style={{ paddingTop: "80px" }}
+      >
         {/* Dynamic Background Elements */}
         <div className="code-element" style={{ top: "10%", left: "8%" }}>
           {`const about = {`}
@@ -180,7 +206,7 @@ export default function About({ onNavigate }) {
                 }}
               />
               <h1 className="about-title text-2xl sm:text-4xl lg:text-6xl font-bold text-center text-white drop-shadow-lg animate-fade-down relative z-10 py-4 sm:py-6 lg:py-8">
-                About Me
+                {translations[currentLanguage].aboutPageTitle}
               </h1>
             </div>
 
@@ -188,7 +214,7 @@ export default function About({ onNavigate }) {
               {/* My Story Section */}
               <div className="bg-black/20 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
                 <h2 className="about-subtitle text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 lg:mb-6 text-cyan-400 animate-fade-up animate-delay-200">
-                  My Story
+                  {translations[currentLanguage].myStory}
                 </h2>
                 <div className="space-y-3 sm:space-y-3 lg:space-y-4 text-sm sm:text-base lg:text-lg leading-relaxed">
                   <div className="animate-fade-up animate-delay-300">
@@ -202,51 +228,47 @@ export default function About({ onNavigate }) {
                         onClick={() => setIsExpanded(!isExpanded)}
                         className="read-more-btn text-cyan-400 hover:text-cyan-300 mt-2 text-sm font-medium transition-all duration-300 inline-flex items-center space-x-1"
                       >
-                        <span>{isExpanded ? "Read Less" : "Read More"}</span>
-                        <svg 
-                          className={`w-3 h-3 transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}
-                          fill="none" 
-                          stroke="currentColor" 
+                        <span>
+                          {isExpanded
+                            ? translations[currentLanguage].readLess
+                            : translations[currentLanguage].readMore}
+                        </span>
+                        <svg
+                          className={`w-3 h-3 transition-transform duration-300 ${
+                            isExpanded ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
                           viewBox="0 0 24 24"
                         >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          />
                         </svg>
                       </button>
                     </div>
                     {/* Desktop: Show full text */}
                     <div className="hidden sm:block">
-                      <p>
-                        Hi, I'm Assaf Azran, a passionate Full Stack Developer from
-                        Israel. My journey into web development began with a
-                        curiosity about how things work on the internet, and it
-                        quickly evolved into a deep passion for creating digital
-                        experiences that make a difference.
-                      </p>
+                      <p>{translations[currentLanguage].aboutParagraph1}</p>
                     </div>
                   </div>
                   <p className="animate-fade-up animate-delay-400">
                     <span className="hidden sm:inline">
-                      Coming from a mechanical engineering background, I bring a
-                      unique problem-solving approach to every project. I love
-                      turning complex challenges into elegant, user-friendly
-                      solutions that not only work flawlessly but also look
-                      beautiful and feel intuitive to use.
+                      {translations[currentLanguage].aboutParagraph2}
                     </span>
                     <span className="sm:hidden">
-                      Coming from a mechanical engineering background, I bring a unique problem-solving approach to every project.
+                      {translations[currentLanguage].aboutParagraph2Mobile}
                     </span>
                   </p>
                   <p className="animate-fade-up animate-delay-500 text-cyan-300">
                     <span className="hidden sm:inline">
-                      I'm the kind of person who gets genuinely excited about
-                      clean code, who stays up late debugging because I can't let
-                      a problem go unsolved, and who believes that every line of
-                      code should tell a story. When I'm not coding, you'll find
-                      me training MMA, exploring new coffee shops, or diving deep
-                      into the latest tech trends.
+                      {translations[currentLanguage].aboutParagraph3}
                     </span>
                     <span className="sm:hidden">
-                      I'm passionate about clean code and problem-solving. When I'm not coding, I train MMA and explore tech trends.
+                      {translations[currentLanguage].aboutParagraph3Mobile}
                     </span>
                   </p>
                 </div>
@@ -255,39 +277,39 @@ export default function About({ onNavigate }) {
               {/* Personal Details Section */}
               <div className="bg-black/20 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
                 <h2 className="about-subtitle text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 lg:mb-6 text-cyan-400 animate-fade-up animate-delay-600">
-                  Personal Details
+                  {translations[currentLanguage].personalDetails}
                 </h2>
                 <div className="personal-details grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
                   <div className="detail-item bg-white/5 rounded-lg p-3 sm:p-3 lg:p-4 border border-white/10">
                     <span className="detail-label text-cyan-300 font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
-                      Location:
+                      {translations[currentLanguage].location}
                     </span>
                     <span className="detail-value text-white text-xs sm:text-sm lg:text-base">
-                      Tel Aviv, Israel
+                      {translations[currentLanguage].locationValue}
                     </span>
                   </div>
                   <div className="detail-item bg-white/5 rounded-lg p-3 sm:p-3 lg:p-4 border border-white/10">
                     <span className="detail-label text-cyan-300 font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
-                      Languages:
+                      {translations[currentLanguage].languages}
                     </span>
                     <span className="detail-value text-white text-xs sm:text-sm lg:text-base">
-                      Hebrew (Native), English (Fluent)
+                      {translations[currentLanguage].languagesValue}
                     </span>
                   </div>
                   <div className="detail-item bg-white/5 rounded-lg p-3 sm:p-3 lg:p-4 border border-white/10">
                     <span className="detail-label text-cyan-300 font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
-                      Interests:
+                      {translations[currentLanguage].interests}
                     </span>
                     <span className="detail-value text-white text-xs sm:text-sm lg:text-base">
-                      Technology, Innovation, Problem Solving, MMA
+                      {translations[currentLanguage].interestsValue}
                     </span>
                   </div>
                   <div className="detail-item bg-white/5 rounded-lg p-3 sm:p-3 lg:p-4 border border-white/10">
                     <span className="detail-label text-cyan-300 font-semibold block mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
-                      Coffee Preference:
+                      {translations[currentLanguage].coffeePreference}
                     </span>
                     <span className="detail-value text-white text-xs sm:text-sm lg:text-base">
-                      Strong, black, no sugar - just like my code
+                      {translations[currentLanguage].coffeeValue}
                     </span>
                   </div>
                 </div>
@@ -296,7 +318,7 @@ export default function About({ onNavigate }) {
               {/* Hobbies & Interests Section */}
               <div className="bg-black/20 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
                 <h2 className="about-subtitle text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 lg:mb-6 text-cyan-400 animate-fade-up animate-delay-700">
-                  Hobbies & Interests
+                  {translations[currentLanguage].hobbiesInterests}
                 </h2>
                 <div className="hobbies-grid grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                   <div className="hobby-item bg-white/5 rounded-lg p-3 sm:p-4 lg:p-6 border border-white/10 text-center animate-fade-up animate-delay-800 hover:bg-white/10 transition-all duration-300">
@@ -304,15 +326,10 @@ export default function About({ onNavigate }) {
                       🥋
                     </div>
                     <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-2 lg:mb-3 text-cyan-300">
-                      MMA Training
+                      {translations[currentLanguage].mmaTraining}
                     </h3>
                     <p className="text-white/80 leading-relaxed text-xs sm:text-sm lg:text-base">
-                      I'm passionate about martial arts and train regularly in
-                      MMA. It's not just about physical fitness - it's about
-                      discipline, mental toughness, and the constant pursuit of
-                      improvement. The same principles I apply in training
-                      translate directly to my coding: focus, persistence, and
-                      never giving up on a challenge.
+                      {translations[currentLanguage].mmaDescription}
                     </p>
                   </div>
                   <div className="hobby-item bg-white/5 rounded-lg p-3 sm:p-4 lg:p-6 border border-white/10 text-center animate-fade-up animate-delay-900 hover:bg-white/10 transition-all duration-300">
@@ -320,13 +337,10 @@ export default function About({ onNavigate }) {
                       💻
                     </div>
                     <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-2 lg:mb-3 text-cyan-300">
-                      Tech Explorer
+                      {translations[currentLanguage].techExplorer}
                     </h3>
                     <p className="text-white/80 leading-relaxed text-xs sm:text-sm lg:text-base">
-                      Always learning new technologies and frameworks. I believe
-                      in staying curious and never stopping the learning
-                      process. Every new technology is an opportunity to solve
-                      problems in better, more efficient ways.
+                      {translations[currentLanguage].techExplorerDescription}
                     </p>
                   </div>
                   <div className="hobby-item bg-white/5 rounded-lg p-3 sm:p-4 lg:p-6 border border-white/10 text-center animate-fade-up animate-delay-1000 hover:bg-white/10 transition-all duration-300">
@@ -334,13 +348,10 @@ export default function About({ onNavigate }) {
                       🚀
                     </div>
                     <h3 className="text-base sm:text-lg lg:text-xl font-bold mb-2 sm:mb-2 lg:mb-3 text-cyan-300">
-                      Innovation Seeker
+                      {translations[currentLanguage].innovationSeeker}
                     </h3>
                     <p className="text-white/80 leading-relaxed text-xs sm:text-sm lg:text-base">
-                      Passionate about cutting-edge solutions and creative
-                      approaches. I love pushing boundaries and finding new ways
-                      to solve old problems. Innovation isn't just about new
-                      technology - it's about new ways of thinking.
+                      {translations[currentLanguage].innovationDescription}
                     </p>
                   </div>
                 </div>

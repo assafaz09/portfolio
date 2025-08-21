@@ -3,20 +3,21 @@ import Navbar from "./components/Navbar";
 import About from "./components/About";
 import Portfolio from "./components/Portfolio";
 import { useEffect, useRef, useState } from "react";
+import { translations } from "./translations";
 
 function App() {
   const observerRef = useRef(null);
   const [currentProject, setCurrentProject] = useState(0);
   const [currentPage, setCurrentPage] = useState("home");
+  const [currentLanguage, setCurrentLanguage] = useState("en");
 
-  const projects = [
+  const getProjects = () => [
     {
       id: 1,
-      title: "Student Management System",
+      title: translations[currentLanguage].studentSystem,
       emoji: "🎓",
       link: "https://f-student-system-production.up.railway.app/",
-      description:
-        "Full-stack web application for managing student records, courses, and academic data with real-time updates and comprehensive admin dashboard.",
+      description: translations[currentLanguage].studentSystemDesc,
       technologies: [
         "React.js",
         "Node.js",
@@ -28,16 +29,15 @@ function App() {
       screenshots: [
         "project1.jpg",
         "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop=crop&center",
       ],
     },
     {
       id: 2,
-      title: "BestMovie Rate",
+      title: translations[currentLanguage].movieRate,
       emoji: "🎬",
       link: "https://github.com/assafaz09/movieRate",
-      description:
-        "Interactive movie rating and review platform where users can discover, rate, and review their favorite films with a modern and intuitive interface.",
+      description: translations[currentLanguage].movieRateDesc,
       technologies: [
         "React.js",
         "Node.js",
@@ -49,11 +49,10 @@ function App() {
     },
     {
       id: 3,
-      title: "Event Production Store",
+      title: translations[currentLanguage].eventStore,
       emoji: "🎪",
       link: "#",
-      description:
-        "E-commerce platform for event production services including planning, catering, decorations, and entertainment with integrated booking and payment systems.",
+      description: translations[currentLanguage].eventStoreDesc,
       technologies: [
         "React.js",
         "Node.js",
@@ -66,11 +65,10 @@ function App() {
     },
     {
       id: 4,
-      title: "Portfolio & Landing Pages",
+      title: translations[currentLanguage].portfolioLanding,
       emoji: "🌐",
       link: "#",
-      description:
-        "Collection of professional portfolio websites and landing pages showcasing modern design, responsive layouts, and creative user experiences for various clients and projects.",
+      description: translations[currentLanguage].portfolioLandingDesc,
       technologies: [
         "React.js",
         "HTML5",
@@ -82,6 +80,13 @@ function App() {
       image: "🌐",
     },
   ];
+
+  const projects = getProjects();
+
+  // Update projects when language changes
+  useEffect(() => {
+    // This will trigger a re-render when currentLanguage changes
+  }, [currentLanguage]);
 
   const nextProject = () => {
     setCurrentProject((prev) => (prev + 1) % projects.length);
@@ -162,8 +167,27 @@ function App() {
   }, [currentPage]);
 
   return (
-    <div className="min-h-screen bg-white text-black overflow-x-hidden">
-      <Navbar onNavigate={scrollToSection} />
+    <div
+      className="min-h-screen bg-white text-black overflow-x-hidden"
+      dir={currentLanguage === "he" ? "rtl" : "ltr"}
+    >
+      <Navbar
+        onNavigate={scrollToSection}
+        currentLanguage={currentLanguage}
+        onLanguageChange={setCurrentLanguage}
+      />
+
+      {/* Mobile Language Switcher - Outside Navbar */}
+      <div className="md:hidden fixed top-20 right-4 z-40">
+        <button
+          onClick={() =>
+            setCurrentLanguage(currentLanguage === "en" ? "he" : "en")
+          }
+          className="mobile-language-switcher bg-black/20 backdrop-blur-sm border border-cyan-500/20 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-black/30 transition-all duration-300 font-medium"
+        >
+          {currentLanguage === "en" ? "עברית" : "EN"}
+        </button>
+      </div>
 
       {currentPage === "home" ? (
         <>
@@ -334,12 +358,11 @@ function App() {
                   Assaf Azran
                 </h1>
                 <h2 className="text-lg sm:text-xl lg:text-2xl text-white/90 font-medium mb-6 lg:mb-8 drop-shadow-lg">
-                  FullStack Developer
+                  {translations[currentLanguage].heroTitle}
                 </h2>
 
                 <p className="text-base sm:text-lg lg:text-xl text-white/80 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed drop-shadow-lg px-4">
-                  Transforming business challenges into scalable,
-                  high-performance web solutions that drive measurable results.
+                  {translations[currentLanguage].heroDescription}
                 </p>
               </div>
 
@@ -364,12 +387,11 @@ function App() {
             {/* Header */}
             <div className="w-full flex flex-col items-center justify-center pt-0 animate-fade-up">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-center mt-10 drop-shadow-lg">
-                Projects
+                {translations[currentLanguage].projectsTitle}
               </h2>
-              <div className="w-16 sm:w-20 lg:w-24 h-1 bg-cyan-400 rounded-full mt-3 lg:mt-5 shadow-lg" />
+              <div className="w-16 sm:w-24 h-1 bg-cyan-400 rounded-full mt-3 lg:mt-5 shadow-lg" />
               <p className="text-sm sm:text-base lg:text-lg text-white/90 max-w-xl lg:max-w-2xl text-center mt-3 lg:mt-5 drop-shadow-lg px-4">
-                Explore a selection of my recent work, each crafted with
-                attention to detail and a focus on user experience.
+                {translations[currentLanguage].projectsSubtitle}
               </p>
             </div>
 
@@ -578,7 +600,7 @@ function App() {
                               style={{ padding: "10px 24px" }}
                               onClick={() => setCurrentPage("portfolio")}
                             >
-                              Take a Look
+                              {translations[currentLanguage].takeALook}
                             </button>
                           ) : project.link === "#" ? (
                             <button
@@ -586,7 +608,7 @@ function App() {
                               style={{ padding: "10px 24px" }}
                               disabled
                             >
-                              Coming Soon
+                              {translations[currentLanguage].comingSoon}
                             </button>
                           ) : (
                             <a
@@ -596,7 +618,7 @@ function App() {
                               rel="noopener noreferrer"
                               className="inline-flex items-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                             >
-                              Take a Look
+                              {translations[currentLanguage].takeALook}
                             </a>
                           )}
                         </div>
@@ -838,7 +860,7 @@ function App() {
 
             <div className="max-w-4xl lg:max-w-6xl mx-auto relative z-10 px-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-12 lg:mb-16 text-white animate-fade-left">
-                Skills & Technologies
+                {translations[currentLanguage].skillsTitle}
               </h2>
 
               <div className="code-editor-container bg-gray-900 rounded-xl lg:rounded-2xl p-4 lg:p-8 shadow-2xl border border-gray-700 animate-scale-up">
@@ -1102,49 +1124,46 @@ function App() {
             <div className="container px-4">
               <div className="animate-on-scroll">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-white drop-shadow-lg">
-                  Education & Certifications
+                  {translations[currentLanguage].educationTitle}
                 </h2>
 
                 <div className="education-grid max-w-4xl mx-auto space-y-4 md:space-y-6">
                   <div className="education-card bg-black border border-white/20 rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
                     <h3 className="education-title text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">
-                      Full Stack Web Development
+                      {translations[currentLanguage].fullStackCourse}
                     </h3>
                     <p className="education-institution text-cyan-400 text-sm sm:text-base lg:text-lg mb-2">
-                      SV College
+                      {translations[currentLanguage].svCollege}
                     </p>
                     <p className="education-date text-white/80 text-xs sm:text-sm lg:text-base mb-1">
-                      January 2025 - August 2025
+                      {translations[currentLanguage].fullStackDuration}
                     </p>
                     <p className="education-location text-white/70 text-xs sm:text-sm lg:text-base mb-3">
-                      Tel Aviv, Israel
+                      {translations[currentLanguage].telAvivLocation}
                     </p>
                     <p className="education-description text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed">
-                      A practical development course emphasizing project
-                      building and working in a real development environment.
+                      {translations[currentLanguage].fullStackDesc}
                     </p>
                   </div>
 
                   <div className="education-card bg-black border border-white/20 rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
                     <h3 className="education-title text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">
-                      Practical Engineer in Mechanical Engineering
+                      {translations[currentLanguage].mechanicalEngineer}
                     </h3>
                     <p className="education-institution text-cyan-400 text-sm sm:text-base lg:text-lg mb-2">
-                      ORT College
+                      {translations[currentLanguage].ortCollege}
                     </p>
                     <p className="education-date text-white/80 text-xs sm:text-sm lg:text-base mb-1">
-                      October 2019 - March 2021
+                      {translations[currentLanguage].mechanicalDuration}
                     </p>
                     <p className="education-location text-white/70 text-xs sm:text-sm lg:text-base mb-1">
-                      Ashkelon, Israel
+                      {translations[currentLanguage].ashkelonLocation}
                     </p>
                     <p className="education-date text-white/80 text-xs sm:text-sm lg:text-base mb-3 font-medium">
-                      GPA: 86
+                      {translations[currentLanguage].gpaText}
                     </p>
                     <p className="education-description text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed">
-                      Technological studies with an emphasis on problem-solving,
-                      systematic thinking, and the application of precise
-                      methodologies.
+                      {translations[currentLanguage].mechanicalDesc}
                     </p>
                   </div>
                 </div>
@@ -1593,9 +1612,17 @@ function App() {
           </footer>
         </>
       ) : currentPage === "portfolio" ? (
-        <Portfolio onNavigate={scrollToSection} />
+        <Portfolio
+          onNavigate={scrollToSection}
+          currentLanguage={currentLanguage}
+          onLanguageChange={setCurrentLanguage}
+        />
       ) : currentPage === "about" ? (
-        <About onNavigate={scrollToSection} />
+        <About
+          onNavigate={scrollToSection}
+          currentLanguage={currentLanguage}
+          onLanguageChange={setCurrentLanguage}
+        />
       ) : (
         <div style={{ padding: "100px 20px", textAlign: "center" }}>
           <h1 style={{ color: "red", fontSize: "3rem" }}>ABOUT PAGE TEST</h1>

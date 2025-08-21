@@ -1,13 +1,17 @@
 import React from "react";
 import Navbar from "./Navbar";
+import { translations } from "../translations";
 
-export default function Portfolio({ onNavigate }) {
+export default function Portfolio({
+  onNavigate,
+  currentLanguage,
+  onLanguageChange,
+}) {
   const projects = [
     {
       id: 1,
-      title: "Chen Cosmetics Landing Page",
-      description:
-        "A modern, elegant landing page for Chen Cosmetics beauty salon. Features beautiful service showcases, professional nail and eyebrow design services, and an intuitive booking system. Designed to convert visitors into customers with compelling visuals and smooth user experience.",
+      title: translations[currentLanguage].chenCosmetics,
+      description: translations[currentLanguage].chenCosmeticsDesc,
       technologies: [
         "React",
         "Tailwind CSS",
@@ -22,9 +26,8 @@ export default function Portfolio({ onNavigate }) {
     },
     {
       id: 2,
-      title: "CHAKI DJ Business Landing Page",
-      description:
-        "A dynamic and energetic landing page for CHAKI, a professional DJ service. Features a dark, modern design with music samples, event galleries, booking calendar, and client reviews. Perfect for capturing the excitement and professionalism of entertainment services.",
+      title: translations[currentLanguage].chakiDj,
+      description: translations[currentLanguage].chakiDjDesc,
       technologies: ["React", "CSS3", "JavaScript", "Audio Integration"],
       bgColor: "bg-black/20 backdrop-blur-sm border border-white/20",
       borderColor: "hover:border-blue-300/40",
@@ -34,9 +37,8 @@ export default function Portfolio({ onNavigate }) {
     },
     {
       id: 3,
-      title: "OR Productions Event Attractions",
-      description:
-        "A comprehensive landing page for OR Productions event attractions company. Features service catalog, pricing tables, photo galleries, and contact forms. Designed to showcase the variety and quality of attractions available for events with beautiful catering displays and event planning services.",
+      title: translations[currentLanguage].orProductions,
+      description: translations[currentLanguage].orProductionsDesc,
       technologies: ["React", "Tailwind CSS", "Image Gallery", "Contact Forms"],
       bgColor: "bg-black/20 backdrop-blur-sm border border-white/20",
       borderColor: "hover:border-green-300/40",
@@ -47,8 +49,27 @@ export default function Portfolio({ onNavigate }) {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white overflow-x-hidden">
-      <Navbar onNavigate={onNavigate} />
+    <div
+      className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white overflow-x-hidden"
+      dir={currentLanguage === "he" ? "rtl" : "ltr"}
+    >
+      <Navbar
+        onNavigate={onNavigate}
+        currentLanguage={currentLanguage}
+        onLanguageChange={onLanguageChange}
+      />
+
+      {/* Mobile Language Switcher - Outside Navbar */}
+      <div className="md:hidden fixed top-20 right-4 z-40">
+        <button
+          onClick={() =>
+            onLanguageChange(currentLanguage === "en" ? "he" : "en")
+          }
+          className="mobile-language-switcher bg-black/20 backdrop-blur-sm border border-cyan-500/20 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-black/30 transition-all duration-300 font-medium"
+        >
+          {currentLanguage === "en" ? "עברית" : "EN"}
+        </button>
+      </div>
 
       {/* Portfolio Page */}
       <section
@@ -236,13 +257,11 @@ export default function Portfolio({ onNavigate }) {
           {/* Hero Section */}
           <div className="hero-section text-center">
             <h1 className="animate-fade-down text-4xl sm:text-5xl lg:text-6xl">
-              Landing Pages Portfolio
+              {translations[currentLanguage].portfolioPageTitle}
             </h1>
             <div className="divider"></div>
             <p className="animate-fade-up animate-delay-200 text-base sm:text-lg lg:text-xl max-w-4xl mx-auto">
-              Professional landing pages designed to convert visitors into
-              customers. Each project is crafted with modern design principles,
-              responsive layouts, and optimized user experience.
+              {translations[currentLanguage].portfolioPageSubtitle}
             </p>
           </div>
 
@@ -265,7 +284,7 @@ export default function Portfolio({ onNavigate }) {
                   {/* Technologies Used - Compact */}
                   <div className="technologies-section mb-4 sm:mb-6">
                     <h4 className="text-sm sm:text-base font-semibold text-cyan-400 mb-2 sm:mb-3">
-                      Technologies Used
+                      {translations[currentLanguage].technologiesUsed}
                     </h4>
                     <div className="technologies-grid flex flex-wrap justify-center gap-1.5 sm:gap-2">
                       {project.technologies.map((tech, i) => (
@@ -293,7 +312,10 @@ export default function Portfolio({ onNavigate }) {
                       ) : (
                         <div className="project-image w-full h-56 sm:h-64 lg:h-72 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center rounded-lg">
                           <span className="text-white/60 text-sm sm:text-base">
-                            Project {project.id} Image
+                            {translations[currentLanguage].projectImage.replace(
+                              "{id}",
+                              project.id
+                            )}
                           </span>
                         </div>
                       )}
@@ -311,7 +333,7 @@ export default function Portfolio({ onNavigate }) {
                       ) : (
                         <div className="project-image w-full h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center rounded-lg">
                           <span className="text-white/60 text-sm sm:text-base">
-                            Additional Image
+                            {translations[currentLanguage].additionalImage}
                           </span>
                         </div>
                       )}
@@ -323,7 +345,9 @@ export default function Portfolio({ onNavigate }) {
                     onClick={() => window.open(project.link, "_blank")}
                     className="view-button mt-6 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                   >
-                    {project.link === "#" ? "Coming Soon" : "View Project"}
+                    {project.link === "#"
+                      ? translations[currentLanguage].comingSoon
+                      : translations[currentLanguage].viewProject}
                   </button>
                 </div>
               </div>
@@ -333,17 +357,16 @@ export default function Portfolio({ onNavigate }) {
           {/* Call to Action */}
           <div className="call-to-action text-center mt-16 sm:mt-20">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
-              Ready to Create Your Landing Page?
+              {translations[currentLanguage].readyToCreate}
             </h2>
             <p className="text-base sm:text-lg lg:text-xl text-gray-300 mb-6 sm:mb-8 max-w-3xl mx-auto">
-              Let's work together to create a stunning landing page that
-              converts visitors into customers and drives your business forward.
+              {translations[currentLanguage].letsWorkTogether}
             </p>
             <button
               onClick={() => onNavigate("contact")}
               className="cta-button px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-lg sm:text-xl lg:text-2xl font-bold rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-2xl hover:shadow-3xl transform hover:-translate-y-2"
             >
-              Get Started Today
+              {translations[currentLanguage].getStartedToday}
             </button>
           </div>
         </div>

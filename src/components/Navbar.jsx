@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { translations } from "../translations";
 
-export default function Navbar({ onNavigate }) {
+export default function Navbar({
+  onNavigate,
+  currentLanguage,
+  onLanguageChange,
+}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,6 +25,7 @@ export default function Navbar({ onNavigate }) {
   const handleNavigation = (section) => {
     setActiveSection(section);
     setIsMenuOpen(false);
+    // Call onNavigate first to ensure navigation happens
     if (onNavigate) {
       onNavigate(section);
     }
@@ -44,6 +50,7 @@ export default function Navbar({ onNavigate }) {
           ? "bg-black/20 md:bg-black/30 border-b border-cyan-500/20 shadow-lg"
           : "bg-transparent border-b border-transparent"
       }`}
+      dir={currentLanguage === "he" ? "rtl" : "ltr"}
     >
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16 lg:h-18">
@@ -80,7 +87,7 @@ export default function Navbar({ onNavigate }) {
                     : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
                 }`}
               >
-                Home
+                {translations[currentLanguage].home}
               </button>
               <button
                 onClick={() => handleNavigation("about")}
@@ -90,7 +97,7 @@ export default function Navbar({ onNavigate }) {
                     : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
                 }`}
               >
-                About
+                {translations[currentLanguage].about}
               </button>
               <button
                 onClick={() => handleNavigation("portfolio")}
@@ -100,7 +107,7 @@ export default function Navbar({ onNavigate }) {
                     : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
                 }`}
               >
-                Portfolio
+                {translations[currentLanguage].portfolio}
               </button>
               <button
                 onClick={() => handleNavigation("contact")}
@@ -110,12 +117,31 @@ export default function Navbar({ onNavigate }) {
                     : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
                 }`}
               >
-                Contact
+                {translations[currentLanguage].contact}
               </button>
             </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-3">
+            {/* Language Switcher */}
+            <button
+              onClick={() =>
+                onLanguageChange(currentLanguage === "en" ? "he" : "en")
+              }
+              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 border ${
+                isScrolled || isMenuOpen
+                  ? "bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-cyan-400/40"
+                  : "bg-white/5 hover:bg-white/15 text-white border-white/10 hover:border-white/30"
+              }`}
+              title={translations[currentLanguage].language}
+            >
+              <span className="flex items-center space-x-1">
+                <span className="text-xs">🌍</span>
+                <span>{currentLanguage === "en" ? "עברית" : "EN"}</span>
+              </span>
+            </button>
+
+            {/* Download CV Button */}
             <button
               onClick={handleDownloadCV}
               className={`bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/25 hover:-translate-y-0.5 transform hover:scale-105 border ${
@@ -138,7 +164,9 @@ export default function Navbar({ onNavigate }) {
                     d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <span className="text-sm">Download CV</span>
+                <span className="text-sm">
+                  {translations[currentLanguage].downloadCV}
+                </span>
               </span>
             </button>
           </div>
@@ -204,7 +232,7 @@ export default function Navbar({ onNavigate }) {
                   : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
               }`}
             >
-              Home
+              {translations[currentLanguage].home}
             </button>
             <button
               onClick={() => handleNavigation("about")}
@@ -214,7 +242,7 @@ export default function Navbar({ onNavigate }) {
                   : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
               }`}
             >
-              About
+              {translations[currentLanguage].about}
             </button>
             <button
               onClick={() => handleNavigation("portfolio")}
@@ -224,7 +252,7 @@ export default function Navbar({ onNavigate }) {
                   : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
               }`}
             >
-              Portfolio
+              {translations[currentLanguage].portfolio}
             </button>
             <button
               onClick={() => handleNavigation("contact")}
@@ -234,8 +262,21 @@ export default function Navbar({ onNavigate }) {
                   : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
               }`}
             >
-              Contact
+              {translations[currentLanguage].contact}
             </button>
+            {/* Language Switcher for Mobile */}
+            <button
+              onClick={() =>
+                onLanguageChange(currentLanguage === "en" ? "he" : "en")
+              }
+              className="language-switcher-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 border border-white/20 hover:border-cyan-400/40 bg-white/5 hover:bg-white/10 text-white hover:text-cyan-300"
+            >
+              <span className="flex items-center space-x-2">
+                <span className="text-sm">🌍</span>
+                <span>{currentLanguage === "en" ? "עברית" : "English"}</span>
+              </span>
+            </button>
+
             <button
               onClick={handleDownloadCV}
               className="block w-full text-left bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-3 rounded-xl font-semibold transition-all duration-300 mt-4 border border-cyan-400/30 hover:shadow-lg"
@@ -254,7 +295,7 @@ export default function Navbar({ onNavigate }) {
                     d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <span>Download CV</span>
+                <span>{translations[currentLanguage].downloadCV}</span>
               </span>
             </button>
           </div>
