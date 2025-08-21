@@ -32,13 +32,41 @@ export default function Navbar({
   };
 
   // Handle CV download
-  const handleDownloadCV = () => {
-    const link = document.createElement("a");
-    link.href = "/assaf azran cv.pdf";
-    link.download = "Assaf_Azran_CV.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleDownloadCV = async () => {
+    try {
+      // Try to fetch the file first to ensure it exists
+      const response = await fetch("/assaf-azran-cv.pdf");
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      // Create blob from response
+      const blob = await response.blob();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Assaf_Azran_CV.pdf";
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("Error downloading CV:", error);
+      // Fallback to direct link
+      const link = document.createElement("a");
+      link.href = "/assaf-azran-cv.pdf";
+      link.download = "Assaf_Azran_CV.pdf";
+      link.target = "_blank";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
   };
 
   return (
