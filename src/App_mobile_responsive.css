@@ -628,38 +628,264 @@
 /* Add proper spacing to projects section */
 @media (max-width: 768px) {
   #projects {
-    padding: 3rem 1rem !important;
+    padding: 4rem 1.5rem !important;
   }
 
   #projects .relative.min-h-\[80vh\] {
-    padding: 2rem 1rem !important;
-    margin-bottom: 0 !important;
+    padding: 3rem 1.5rem !important;
+    margin-bottom: 2rem !important;
   }
 
   /* Ensure project navigation buttons are visible */
   .project-nav {
     z-index: 999 !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    border: 3px solid #3b82f6 !important;
+    width: 60px !important;
+    height: 60px !important;
+    font-size: 1.75rem !important;
+  }
+
+  /* Add more padding to project content for mobile */
+  .project-content-fullscreen {
+    padding: 3rem 1.5rem !important;
+    gap: 2rem !important;
+  }
+
+  /* Ensure project link buttons are fully visible */
+  .project-link-fullscreen {
+    margin-bottom: 2rem !important;
+    padding: 1.5rem 3rem !important;
+    font-size: 1.25rem !important;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4) !important;
+    border: 2px solid #3b82f6 !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  /* Add bottom margin to project text */
+  .project-text-fullscreen {
+    margin-bottom: 2rem !important;
+  }
+
+  /* Fix blue button positioning and visibility in projects */
+  .projects-container .inline-flex {
+    margin-bottom: 2rem !important;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+    box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3) !important;
+    z-index: 150 !important;
+    position: relative !important;
+  }
+
+  /* Ensure project slide has enough bottom padding */
+  .projects-container .absolute.inset-0 {
+    padding-bottom: 4rem !important;
+  }
+
+  /* Add more margin to the project content container */
+  .projects-container .flex.flex-col {
+    margin-bottom: 3rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  /* Make project images clickable with hover effects */
+  .projects-container .cursor-pointer:hover {
+    transform: scale(1.02) !important;
+  }
+
+  .projects-container .cursor-pointer:hover img {
+    transform: scale(1.08) !important;
+    box-shadow: 0 15px 40px rgba(6, 182, 212, 0.3) !important;
+  }
+
+  .projects-container .cursor-pointer:active {
+    transform: scale(0.98) !important;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
+@media (min-width: 769px) and (max-width: 1023px) {
   #projects {
-    padding: 4rem 2rem !important;
+    padding: 5rem 2.5rem !important;
   }
 
   #projects .relative.min-h-\[80vh\] {
-    padding: 2.5rem 1.5rem !important;
+    padding: 3rem 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Add more padding to project content for tablet */
+  .project-content-fullscreen {
+    padding: 3.5rem 2rem !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Ensure project link buttons are fully visible */
+  .project-link-fullscreen {
+    margin-bottom: 2.5rem !important;
+    padding: 1.5rem 3.5rem !important;
+    font-size: 1.25rem !important;
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4) !important;
+    border: 2px solid #3b82f6 !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  /* Add bottom margin to project text */
+  .project-text-fullscreen {
+    margin-bottom: 2.5rem !important;
+  }
+
+  /* Fix blue button positioning and visibility in projects */
+  .projects-container .inline-flex {
+    margin-bottom: 2.5rem !important;
+    padding: 1.25rem 2.5rem !important;
+    font-size: 1.125rem !important;
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4) !important;
+    z-index: 150 !important;
+    position: relative !important;
+  }
+
+  /* Ensure project slide has enough bottom padding */
+  .projects-container .absolute.inset-0 {
+    padding-bottom: 5rem !important;
+  }
+
+  /* Add more margin to the project content container */
+  .projects-container .flex.flex-col {
+    margin-bottom: 4rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  /* Make project images clickable with hover effects */
+  .projects-container .cursor-pointer:hover {
+    transform: scale(1.03) !important;
+  }
+
+  .projects-container .cursor-pointer:hover img {
+    transform: scale(1.1) !important;
+    box-shadow: 0 18px 45px rgba(6, 182, 212, 0.4) !important;
+  }
+
+  .projects-container .cursor-pointer:active {
+    transform: scale(0.97) !important;
+  }
+
+  /* Portfolio page improvements for tablet */
+  .portfolio-page .images-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .portfolio-page .project-image {
+    height: 350px !important;
   }
 }
 
 @media (min-width: 1025px) {
   #projects {
-    padding: 5rem 3rem !important;
+    padding: 6rem 3rem !important;
   }
 
   #projects .relative.min-h-\[80vh\] {
-    padding: 3rem 2rem !important;
+    padding: 4rem 2.5rem !important;
+    margin-bottom: 3rem !important;
+  }
+
+  /* Add more padding to project content for desktop */
+  .project-content-fullscreen {
+    padding: 4rem 2.5rem !important;
+    gap: 3rem !important;
+  }
+
+  /* Ensure project link buttons are fully visible */
+  .project-link-fullscreen {
+    margin-bottom: 3rem !important;
+    padding: 1.5rem 4rem !important;
+    font-size: 1.25rem !important;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4) !important;
+    border: 2px solid #3b82f6 !important;
+    position: relative !important;
+    z-index: 100 !important;
+  }
+
+  /* Add bottom margin to project text */
+  .project-text-fullscreen {
+    margin-bottom: 3rem !important;
+  }
+
+  /* Fix blue button positioning and visibility in projects */
+  .projects-container .inline-flex {
+    margin-bottom: 3rem !important;
+    padding: 1.5rem 3rem !important;
+    font-size: 1.25rem !important;
+    box-shadow: 0 12px 35px rgba(6, 182, 212, 0.5) !important;
+    z-index: 150 !important;
+    position: relative !important;
+  }
+
+  /* Ensure project slide has enough bottom padding */
+  .projects-container .absolute.inset-0 {
+    padding-bottom: 6rem !important;
+  }
+
+  /* Add more margin to the project content container */
+  .projects-container .flex.flex-col {
+    margin-bottom: 5rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  /* Make project images clickable with hover effects */
+  .projects-container .cursor-pointer:hover {
+    transform: scale(1.05) !important;
+  }
+
+  .projects-container .cursor-pointer:hover img {
+    transform: scale(1.12) !important;
+    box-shadow: 0 20px 50px rgba(6, 182, 212, 0.5) !important;
+  }
+
+  .projects-container .cursor-pointer:active {
+    transform: scale(0.95) !important;
+  }
+
+  /* Portfolio page improvements for desktop */
+  .portfolio-page .images-section {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .portfolio-page .project-image {
+    height: 450px !important;
+  }
+
+  /* Portfolio page improvements */
+  .portfolio-page .technologies-section {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .portfolio-page .technologies-grid {
+    gap: 0.5rem !important;
+  }
+
+  .portfolio-page .tech-tag {
+    padding: 0.25rem 0.75rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .portfolio-page .images-section {
+    margin-bottom: 1.5rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .portfolio-page .project-image {
+    height: 250px !important;
+    margin-bottom: 1rem !important;
   }
 }
 

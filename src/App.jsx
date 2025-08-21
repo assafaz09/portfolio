@@ -91,6 +91,17 @@ function App() {
     setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
+  const handleProjectImageClick = (project) => {
+    if (project.id === 4) {
+      // Portfolio & Landing Pages - לעמוד הפורטפוליו
+      setCurrentPage("portfolio");
+    } else if (project.link !== "#") {
+      // פרוייקטים עם קישור - פתיחה בחלון חדש
+      window.open(project.link, "_blank", "noopener,noreferrer");
+    }
+    // אם זה "Coming Soon" (link === "#") - לא עושים כלום
+  };
+
   const scrollToSection = (sectionId) => {
     if (sectionId === "about") {
       setCurrentPage("about");
@@ -593,7 +604,10 @@ function App() {
 
                       {/* תמונה */}
                       <div className="flex-1 flex items-center justify-center animate-fade-left order-1 lg:order-2">
-                        <div className="w-full max-w-[350px] lg:max-w-[400px] relative group">
+                        <div
+                          className="w-full max-w-[350px] lg:max-w-[400px] relative group cursor-pointer"
+                          onClick={() => handleProjectImageClick(project)}
+                        >
                           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                           {project.id === 1 ? (
                             <img

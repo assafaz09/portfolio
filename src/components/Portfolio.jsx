@@ -258,20 +258,20 @@ export default function Portfolio({ onNavigate }) {
                   <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-4 sm:mb-6">
                     {project.title}
                   </h3>
-                  <p className="description text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed mb-6 sm:mb-8">
+                  <p className="description text-sm sm:text-base lg:text-lg text-gray-300 leading-relaxed mb-4 sm:mb-6 line-clamp-3">
                     {project.description}
                   </p>
 
-                  {/* Technologies Used */}
-                  <div className="technologies-section mb-6 sm:mb-8">
-                    <h4 className="text-lg sm:text-xl font-semibold text-cyan-400 mb-3 sm:mb-4">
+                  {/* Technologies Used - Compact */}
+                  <div className="technologies-section mb-4 sm:mb-6">
+                    <h4 className="text-sm sm:text-base font-semibold text-cyan-400 mb-2 sm:mb-3">
                       Technologies Used
                     </h4>
-                    <div className="technologies-grid flex flex-wrap justify-center gap-2 sm:gap-3">
+                    <div className="technologies-grid flex flex-wrap justify-center gap-1.5 sm:gap-2">
                       {project.technologies.map((tech, i) => (
                         <span
                           key={i}
-                          className="tech-tag px-3 py-1 bg-white/10 text-white text-xs sm:text-sm rounded-full border border-white/20"
+                          className="tech-tag px-2 py-0.5 bg-white/10 text-white text-xs rounded-full border border-white/20"
                         >
                           {tech}
                         </span>
@@ -279,19 +279,19 @@ export default function Portfolio({ onNavigate }) {
                     </div>
                   </div>
 
-                  {/* Project Images */}
-                  <div className="images-section grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  {/* Project Images - Larger */}
+                  <div className="images-section grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-4 sm:mb-6">
                     {/* Main Project Image */}
                     <div className="image-container main-image">
                       {project.image ? (
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="project-image w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                          className="project-image w-full h-56 sm:h-64 lg:h-72 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg"
                           onClick={() => window.open(project.link, "_blank")}
                         />
                       ) : (
-                        <div className="project-image w-full h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center rounded-lg">
+                        <div className="project-image w-full h-56 sm:h-64 lg:h-72 bg-gradient-to-br from-white/10 to-white/5 flex items-center justify-center rounded-lg">
                           <span className="text-white/60 text-sm sm:text-base">
                             Project {project.id} Image
                           </span>
@@ -305,7 +305,7 @@ export default function Portfolio({ onNavigate }) {
                         <img
                           src={project.additionalImage}
                           alt="Additional Project Image"
-                          className="project-image w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
+                          className="project-image w-full h-56 sm:h-64 lg:h-72 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg"
                           onClick={() => window.open(project.link, "_blank")}
                         />
                       ) : (
