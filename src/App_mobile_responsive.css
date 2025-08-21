@@ -1,5 +1,19 @@
 /* ===== MOBILE RESPONSIVE IMPROVEMENTS ===== */
 
+/* Mobile font optimization - Hebrew gets Open Sans, English keeps original */
+@media (max-width: 768px) {
+  /* Hebrew text gets Open Sans on mobile */
+  [dir="rtl"] * {
+    font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+  }
+
+  /* English text keeps original font on mobile */
+  [dir="ltr"] * {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, sans-serif !important;
+  }
+}
+
 /* ===== NAVBAR BLUR OVERRIDE ===== */
 /* Remove backdrop blur when menu is closed on mobile */
 @media (max-width: 768px) {
