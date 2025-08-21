@@ -31,41 +31,29 @@ export default function Navbar({
     }
   };
 
-  // Handle CV download
-  const handleDownloadCV = async () => {
+    // Handle CV download
+  const handleDownloadCV = () => {
+    // Method 1: Try direct download first
     try {
-      // Try to fetch the file first to ensure it exists
-      const response = await fetch("/assaf-azran-cv.pdf");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      const link = document.createElement("a");
+      link.href = "assaf-azran-cv.pdf";
+      link.download = "Assaf_Azran_CV.pdf";
+      link.style.display = "none";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      console.log("Direct download failed, trying fallback...");
+      
+      // Method 2: Open in new tab as fallback
+      try {
+        window.open("assaf-azran-cv.pdf", "_blank");
+      } catch (fallbackError) {
+        console.error("All download methods failed:", fallbackError);
+        
+        // Method 3: Show user message
+        alert("CV download failed. Please try right-clicking the link and selecting 'Save as...'");
       }
-      
-      // Create blob from response
-      const blob = await response.blob();
-      
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "Assaf_Azran_CV.pdf";
-      
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error("Error downloading CV:", error);
-      // Fallback to direct link
-      const link = document.createElement("a");
-      link.href = "/assaf-azran-cv.pdf";
-      link.download = "Assaf_Azran_CV.pdf";
-      link.target = "_blank";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
     }
   };
 
