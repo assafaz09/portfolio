@@ -31,38 +31,38 @@ export default function Navbar({
     }
   };
 
-    // Handle CV download - using fetch with fallback
+  // Handle CV download - using fetch with fallback
   const handleDownloadCV = async () => {
     try {
       // Method 1: Try to fetch and download the PDF
-      const response = await fetch(encodeURIComponent("assaf azran cv.pdf"));
+      const response = await fetch("assaf-azran-cv.pdf");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
- 
+
       // Create blob from response
       const blob = await response.blob();
- 
+
       // Create download link
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
       link.download = "Assaf_Azran_CV.pdf";
- 
+
       // Trigger download
       document.body.appendChild(link);
       link.click();
- 
+
       // Cleanup
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
       console.log("Fetch failed, trying direct download...", error);
- 
+
       // Method 2: Direct download as fallback
       try {
         const link = document.createElement("a");
-        link.href = encodeURIComponent("assaf azran cv.pdf");
+        link.href = "assaf-azran-cv.pdf";
         link.download = "Assaf_Azran_CV.pdf";
         link.style.display = "none";
         document.body.appendChild(link);
@@ -73,10 +73,10 @@ export default function Navbar({
           "Direct download failed, trying window.open...",
           fallbackError
         );
- 
+
         // Method 3: Open in new tab as last resort
         try {
-          window.open(encodeURIComponent("assaf azran cv.pdf"), "_blank");
+          window.open("assaf-azran-cv.pdf", "_blank");
         } catch (finalError) {
           console.error("All download methods failed:", finalError);
           alert(
