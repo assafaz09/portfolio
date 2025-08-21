@@ -33,14 +33,18 @@ export default function Navbar({
 
   // Handle CV download - using fetch with fallback
   const handleDownloadCV = () => {
+    // קישור ישיר ל-Google Drive (תחליף את הקישור שלך)
+    const googleDriveLink =
+      "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_HERE";
+
     const link = document.createElement("a");
-    link.href = "/cv.pdf"; // תמיד מוחלט מהשורש של public
-    link.download = "Assaf_Azran_CV.pdf"; // השם שיורד למשתמש
+    link.href = googleDriveLink;
+    link.download = "Assaf_Azran_CV.pdf";
+    link.target = "_blank"; // פותח בטאב חדש
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
-  
 
   return (
     <nav
