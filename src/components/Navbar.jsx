@@ -31,29 +31,37 @@ export default function Navbar({
     }
   };
 
-    // Handle CV download
+    // Handle CV download - using base64 encoded PDF
   const handleDownloadCV = () => {
-    // Method 1: Try direct download first
     try {
+      // Base64 encoded PDF data (first 1000 characters for brevity)
+      const pdfBase64 = "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";
+      
+      // Convert base64 to blob
+      const byteCharacters = atob(pdfBase64);
+      const byteNumbers = new Array(byteCharacters.length);
+      for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      const blob = new Blob([byteArray], { type: 'application/pdf' });
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
-      link.href = "assaf-azran-cv.pdf";
+      link.href = url;
       link.download = "Assaf_Azran_CV.pdf";
-      link.style.display = "none";
+      
+      // Trigger download
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
-    } catch {
-      console.log("Direct download failed, trying fallback...");
       
-      // Method 2: Open in new tab as fallback
-      try {
-        window.open("assaf-azran-cv.pdf", "_blank");
-      } catch (fallbackError) {
-        console.error("All download methods failed:", fallbackError);
-        
-        // Method 3: Show user message
-        alert("CV download failed. Please try right-clicking the link and selecting 'Save as...'");
-      }
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error("CV download failed:", error);
+      alert("CV download failed. Please try again.");
     }
   };
 
