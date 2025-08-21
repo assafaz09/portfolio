@@ -182,7 +182,7 @@ function App() {
 
       {currentPage === "home" ? (
         <>
-          {/* Hero Section */}
+      {/* Hero Section */}
           <section
             id="hero"
             className="hero digital-background relative min-h-screen flex items-center justify-center p-8"
@@ -367,10 +367,10 @@ function App() {
                   Scroll to explore
                 </p>
               </div>
-            </div>
-          </section>
+        </div>
+      </section>
 
-          {/* Projects Section - Full Screen Projects */}
+      {/* Projects Section - Full Screen Projects */}
           <section
             id="projects"
             className="relative overflow-hidden digital-background min-h-screen"
@@ -434,8 +434,8 @@ function App() {
                   src="/node-js-svgrepo-com.svg"
                   alt="Node.js"
                   className="tech-icon"
-                />
-              </div>
+                        />
+                      </div>
               <div
                 className="floating-icon"
                 style={{ top: "58%", right: "21%", animationDelay: "3s" }}
@@ -445,7 +445,7 @@ function App() {
                   alt="MongoDB"
                   className="tech-icon"
                 />
-              </div>
+                    </div>
               <div
                 className="floating-icon"
                 style={{ top: "75%", left: "19%", animationDelay: "4s" }}
@@ -455,7 +455,7 @@ function App() {
                   alt="TypeScript"
                   className="tech-icon"
                 />
-              </div>
+                </div>
               <div
                 className="floating-icon"
                 style={{ top: "92%", right: "9%", animationDelay: "5s" }}
@@ -589,8 +589,8 @@ function App() {
                           {project.title}
                         </h3>
                         <p className="text-white/90 mb-6 text-base lg:text-lg leading-relaxed">
-                          {project.description}
-                        </p>
+                    {project.description}
+                  </p>
 
                         <div className="flex flex-wrap gap-2 mb-6 animate-fade-up justify-center lg:justify-start">
                           {project.technologies.map((tech, i) => (
@@ -598,10 +598,10 @@ function App() {
                               key={i}
                               className="px-3 lg:px-4 py-1 lg:py-2 rounded-full bg-white/10 text-white text-xs lg:text-sm backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
                             >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
 
                         <div className="animate-scale-up animate-delay-300">
                           {project.id === 4 ? (
@@ -623,15 +623,15 @@ function App() {
                           ) : (
                             <a
                               style={{ padding: "10px 24px" }}
-                              href={project.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
                               className="inline-flex items-center rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
-                            >
+                  >
                               {translations[currentLanguage].takeALook}
-                            </a>
+                  </a>
                           )}
-                        </div>
+                </div>
 
                         {/* Navigation to next project */}
                         <div className="mt-6">
@@ -655,8 +655,8 @@ function App() {
                                 "התחל מחדש"}
                             </label>
                           )}
-                        </div>
-                      </div>
+              </div>
+            </div>
 
                       {/* תמונה */}
                       <div className="flex-1 flex items-center justify-center animate-fade-left order-1 lg:order-2">
@@ -715,11 +715,11 @@ function App() {
                   htmlFor="project4cb"
                   className="carousel-indicator h-3 w-3 rounded-full cursor-pointer transition-all duration-300 bg-white/40 hover:bg-white/60"
                 ></label>
-              </div>
-            </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          {/* Skills Section */}
+      {/* Skills Section */}
           <section
             id="skills"
             className="skills digital-background relative px-6 z-10"
@@ -767,7 +767,7 @@ function App() {
                 alt="Vite"
                 className="tech-icon"
               />
-            </div>
+                </div>
             <div
               className="floating-icon"
               style={{ top: "26%", right: "16%", animationDelay: "1.2s" }}
@@ -877,7 +877,7 @@ function App() {
                 alt="GitHub Alt"
                 className="tech-icon"
               />
-            </div>
+              </div>
 
             <div className="max-w-4xl lg:max-w-6xl mx-auto relative z-10 px-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-12 lg:mb-16 text-white animate-fade-left">
@@ -892,7 +892,7 @@ function App() {
                   <span className="text-gray-400 ml-2 lg:ml-4 font-mono text-xs lg:text-sm">
                     technologies.js
                   </span>
-                </div>
+              </div>
                 <div className="bg-gray-800 rounded-lg p-3 lg:p-6 mb-6 lg:mb-8 border border-gray-700 font-mono text-xs lg:text-base text-left max-w-full lg:max-w-2xl mx-auto shadow-lg overflow-x-auto">
                   <span className="text-blue-400">const</span>{" "}
                   <span className="text-yellow-400">technologies</span>{" "}
@@ -941,7 +941,7 @@ function App() {
                   </span>
                   <br />
                   <span className="text-white">&#125;;</span>
-                </div>
+            </div>
 
                 {/* Second Code Editor for Other Skills */}
                 <div className="flex items-center space-x-2 mb-4 lg:mb-6">
@@ -991,11 +991,11 @@ function App() {
                   <br />
                   <span className="text-white">&#125;;</span>
                 </div>
-              </div>
-            </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          {/* Education Section */}
+      {/* Education Section */}
           <section id="education" className="education digital-background">
             {/* Dynamic Background Elements for Education */}
             <div className="code-element" style={{ top: "15%", left: "10%" }}>
@@ -1143,7 +1143,7 @@ function App() {
             </div>
 
             <div className="container px-4">
-              <div className="animate-on-scroll">
+          <div className="animate-on-scroll">
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 lg:mb-16 text-white drop-shadow-lg">
                   {translations[currentLanguage].educationTitle}
                 </h2>
@@ -1164,13 +1164,13 @@ function App() {
                     </p>
                     <p className="education-description text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed">
                       {translations[currentLanguage].fullStackDesc}
-                    </p>
-                  </div>
+                </p>
+              </div>
 
                   <div className="education-card bg-black border border-white/20 rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2">
                     <h3 className="education-title text-base sm:text-lg lg:text-xl font-semibold text-white mb-2">
                       {translations[currentLanguage].mechanicalEngineer}
-                    </h3>
+                </h3>
                     <p className="education-institution text-cyan-400 text-sm sm:text-base lg:text-lg mb-2">
                       {translations[currentLanguage].ortCollege}
                     </p>
@@ -1185,14 +1185,14 @@ function App() {
                     </p>
                     <p className="education-description text-white/90 text-xs sm:text-sm lg:text-base leading-relaxed">
                       {translations[currentLanguage].mechanicalDesc}
-                    </p>
-                  </div>
-                </div>
+                </p>
               </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          {/* Contact Section */}
+      {/* Contact Section */}
           <section id="contact" className="contact digital-background">
             {/* Dynamic Background Elements for Contact */}
             <div className="code-element" style={{ top: "10%", left: "8%" }}>
@@ -1276,7 +1276,7 @@ function App() {
                 alt="Vite"
                 className="tech-icon"
               />
-            </div>
+              </div>
 
             <div
               className="floating-icon"
@@ -1337,7 +1337,7 @@ function App() {
                 alt="GitHub Alt"
                 className="tech-icon"
               />
-            </div>
+              </div>
 
             <div className="container px-4">
               <div className="animate-fade-right">
@@ -1377,15 +1377,15 @@ function App() {
                     <h3 className="contact-label text-white text-lg lg:text-xl">
                       GitHub
                     </h3>
-                    <a
-                      href="https://github.com/assafaz09"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                <a
+                  href="https://github.com/assafaz09"
+                  target="_blank"
+                  rel="noopener noreferrer"
                       className="contact-value text-cyan-400 hover:text-cyan-300 transition-colors text-base lg:text-lg break-all"
-                    >
-                      github.com/assafaz09
-                    </a>
-                  </div>
+                >
+                  github.com/assafaz09
+                </a>
+              </div>
 
                   <div
                     style={{ backgroundColor: "black" }}
@@ -1394,14 +1394,14 @@ function App() {
                     <h3 className="contact-label text-white text-lg lg:text-xl">
                       LinkedIn
                     </h3>
-                    <a
-                      href="https://www.linkedin.com/in/assafazran-developer"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                <a
+                  href="https://www.linkedin.com/in/assafazran-developer"
+                  target="_blank"
+                  rel="noopener noreferrer"
                       className="contact-value text-cyan-400 hover:text-cyan-300 transition-colors text-base lg:text-lg break-all"
-                    >
-                      linkedin.com/in/assafazran-developer
-                    </a>
+                >
+                  linkedin.com/in/assafazran-developer
+                </a>
                   </div>
                 </div>
               </div>
@@ -1413,13 +1413,13 @@ function App() {
             </div>
             <div className="code-element" style={{ top: "22%", right: "18%" }}>
               {`const coffee = 'fuel'`}
-            </div>
+          </div>
             <div
               className="code-element"
               style={{ bottom: "18%", left: "25%" }}
             >
               {`const code = 'passion'`}
-            </div>
+        </div>
 
             <div
               className="glowing-shape"
@@ -1452,8 +1452,8 @@ function App() {
             <div className="container px-4">
               <div className="animate-fade-left">
                 <h2 className="mb-6 lg:mb-8 text-black drop-shadow-lg text-2xl sm:text-3xl lg:text-3xl font-bold text-center">
-                  Living, learning, & leveling up one day at a time.
-                </h2>
+              Living, learning, & leveling up one day at a time.
+            </h2>
                 <div className="emoji-container animate-scale-up flex justify-center">
                   <svg
                     width="32"
@@ -1533,15 +1533,15 @@ function App() {
                       fill="#3B82F6"
                     />
                   </svg>
-                </div>
-              </div>
             </div>
-          </section>
+          </div>
+        </div>
+      </section>
 
           {/* Fun Section */}
 
-          {/* Footer */}
-          <footer className="footer">
+      {/* Footer */}
+      <footer className="footer">
             <div className="container px-4">
               <div className="footer-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
                 <div className="footer-section animate-fade-up">
@@ -1549,88 +1549,88 @@ function App() {
                     Assaf Azran
                   </h3>
                   <p className="footer-description text-sm lg:text-base">
-                    Full Stack Developer passionate about creating exceptional
-                    digital experiences
-                  </p>
-                </div>
+                Full Stack Developer passionate about creating exceptional
+                digital experiences
+              </p>
+            </div>
 
                 <div className="footer-section animate-fade-up animate-delay-200">
                   <h4 className="footer-subtitle text-base lg:text-lg">
                     Quick Links
                   </h4>
-                  <ul className="footer-links">
+              <ul className="footer-links">
                     <li className="text-sm lg:text-base">
-                      <a href="#home">Home</a>
-                    </li>
+                  <a href="#home">Home</a>
+                </li>
                     <li className="text-sm lg:text-base">
-                      <a href="#projects">Projects</a>
-                    </li>
+                  <a href="#projects">Projects</a>
+                </li>
                     <li className="text-sm lg:text-base">
-                      <a href="#skills">Skills</a>
-                    </li>
+                  <a href="#skills">Skills</a>
+                </li>
                     <li className="text-sm lg:text-base">
                       <a href="#projects">Education</a>
-                    </li>
+                </li>
                     <li className="text-sm lg:text-base">
-                      <a href="#contact">Contact</a>
-                    </li>
-                  </ul>
-                </div>
+                  <a href="#contact">Contact</a>
+                </li>
+              </ul>
+            </div>
 
                 <div className="footer-section animate-fade-up animate-delay-300">
                   <h4 className="footer-subtitle text-base lg:text-lg">
                     Technologies
                   </h4>
-                  <ul className="footer-links">
+              <ul className="footer-links">
                     <li className="text-sm lg:text-base">React.js</li>
                     <li className="text-sm lg:text-base">Node.js</li>
                     <li className="text-sm lg:text-base">MongoDB</li>
                     <li className="text-sm lg:text-base">JavaScript</li>
                     <li className="text-sm lg:text-base">CSS3</li>
-                  </ul>
-                </div>
+              </ul>
+            </div>
 
                 <div className="footer-section animate-fade-up animate-delay-400">
                   <h4 className="footer-subtitle text-base lg:text-lg">
                     Connect
                   </h4>
-                  <ul className="footer-links">
+              <ul className="footer-links">
                     <li className="text-sm lg:text-base">
-                      <a
-                        href="https://github.com/assafaz09"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        GitHub
-                      </a>
-                    </li>
+                  <a
+                    href="https://github.com/assafaz09"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GitHub
+                  </a>
+                </li>
                     <li className="text-sm lg:text-base">
-                      <a
-                        href="https://www.linkedin.com/in/assafazran-developer"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        LinkedIn
-                      </a>
-                    </li>
+                  <a
+                    href="https://www.linkedin.com/in/assafazran-developer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LinkedIn
+                  </a>
+                </li>
                     <li className="text-sm lg:text-base">
-                      <a href="mailto:assafaz09@gmail.com">Email</a>
-                    </li>
+                  <a href="mailto:assafaz09@gmail.com">Email</a>
+                </li>
                     <li className="text-sm lg:text-base">
                       Phone: 054-949-8551
                     </li>
-                  </ul>
-                </div>
-              </div>
+              </ul>
+            </div>
+          </div>
 
               <div className="footer-bottom animate-fade-up animate-delay-500">
-                <div className="footer-divider"></div>
+            <div className="footer-divider"></div>
                 <p className="footer-copyright text-sm lg:text-base">
                   © 2025Assaf Azran. Built with ❤️ and ☕
-                </p>
-              </div>
-            </div>
-          </footer>
+            </p>
+          </div>
+        </div>
+      </footer>
         </>
       ) : currentPage === "portfolio" ? (
         <Portfolio
