@@ -7,7 +7,6 @@ import { translations } from "./translations";
 
 function App() {
   const observerRef = useRef(null);
-  const [currentProject, setCurrentProject] = useState(0);
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLanguage, setCurrentLanguage] = useState("en");
 
@@ -87,14 +86,6 @@ function App() {
   useEffect(() => {
     // This will trigger a re-render when currentLanguage changes
   }, [currentLanguage]);
-
-  const nextProject = () => {
-    setCurrentProject((prev) => (prev + 1) % projects.length);
-  };
-
-  const prevProject = () => {
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
-  };
 
   const handleProjectImageClick = (project) => {
     if (project.id === 4) {
@@ -395,8 +386,8 @@ function App() {
               </p>
             </div>
 
-            {/* Slider container */}
-            <div className="relative min-h-[80vh] lg:min-h-[85vh] overflow-hidden mt-6 lg:mt-10 pb-16">
+            {/* CSS-Only Carousel Container */}
+            <div className="projects-carousel relative min-h-[80vh] lg:min-h-[85vh] overflow-hidden mt-6 lg:mt-10 pb-16">
               {/* Dynamic Background Elements for Projects */}
               <div className="code-element" style={{ top: "10%", left: "5%" }}>
                 {`const projects = [`}
@@ -556,20 +547,39 @@ function App() {
                 style={{ bottom: "40%", right: "-200px", width: "250px" }}
               ></div>
 
-              {projects.map((project, index) => {
-                const offset = (index - currentProject) * 100; // אחוזי תזוזה בין סליידים
-                const isActive = index === currentProject;
+              {/* Radio buttons for CSS-only carousel */}
+              <input
+                type="radio"
+                id="project1cb"
+                name="projects"
+                defaultChecked
+                className="project-radio"
+              />
+              <input
+                type="radio"
+                id="project2cb"
+                name="projects"
+                className="project-radio"
+              />
+              <input
+                type="radio"
+                id="project3cb"
+                name="projects"
+                className="project-radio"
+              />
+              <input
+                type="radio"
+                id="project4cb"
+                name="projects"
+                className="project-radio"
+              />
 
+              {projects.map((project, index) => {
                 return (
                   <div
                     key={project.id}
-                    className={[
-                      "absolute inset-0 transition-transform duration-700 ease-in-out",
-                      isActive
-                        ? "z-10 opacity-100 pointer-events-auto"
-                        : "opacity-0 pointer-events-none",
-                    ].join(" ")}
-                    style={{ transform: `translateX(${offset}%)` }}
+                    className={`project-page`}
+                    id={`project${index + 1}`}
                   >
                     {/* תוכן הסלייד */}
                     <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 max-w-[1200px] h-full mx-auto px-4 lg:px-8">
@@ -622,6 +632,30 @@ function App() {
                             </a>
                           )}
                         </div>
+
+                        {/* Navigation to next project */}
+                        <div className="mt-6">
+                          {index < projects.length - 1 && (
+                            <label
+                              htmlFor={`project${index + 2}cb`}
+                              className="project-nav-label inline-block cursor-pointer bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-lg backdrop-blur-sm border border-white/30 transition-all duration-300 font-semibold"
+                            >
+                              {translations[currentLanguage].nextProject ||
+                                "הבא"}{" "}
+                              ➤
+                            </label>
+                          )}
+                          {index === projects.length - 1 && (
+                            <label
+                              htmlFor="project1cb"
+                              className="project-nav-label inline-block cursor-pointer bg-white/20 hover:bg-white/30 text-white px-6 py-3 rounded-lg backdrop-blur-sm border border-white/30 transition-all duration-300 font-semibold"
+                            >
+                              ↺{" "}
+                              {translations[currentLanguage].startAgain ||
+                                "התחל מחדש"}
+                            </label>
+                          )}
+                        </div>
                       </div>
 
                       {/* תמונה */}
@@ -663,37 +697,24 @@ function App() {
                 );
               })}
 
-              {/* חצים */}
-              <button
-                className="project-nav absolute left-4 sm:left-6 lg:left-8 top-1/2 -translate-y-1/2 z-[100] h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 rounded-full bg-white/95 backdrop-blur flex items-center justify-center hover:bg-white shadow-lg text-xl sm:text-2xl lg:text-3xl hover:scale-110 transition-all duration-300"
-                onClick={prevProject}
-                aria-label="Previous"
-              >
-                ‹
-              </button>
-              <button
-                className="project-nav absolute right-4 sm:right-6 lg:right-8 top-1/2 -translate-y-1/2 z-[100] h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 rounded-full bg-white/95 backdrop-blur flex items-center justify-center hover:bg-white shadow-lg text-xl sm:text-2xl lg:text-3xl hover:scale-110 transition-all duration-300"
-                onClick={nextProject}
-                aria-label="Next"
-              >
-                ›
-              </button>
-
-              {/* אינדיקטורים */}
-              <div className="absolute bottom-4 lg:bottom-6 inset-x-0 z-[100] flex items-center justify-center gap-2">
-                {projects.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentProject(i)}
-                    className={[
-                      "h-2 w-2 lg:h-2.5 lg:w-2.5 rounded-full transition",
-                      i === currentProject
-                        ? "bg-blue-600 w-4 lg:w-6"
-                        : "bg-gray-300 hover:bg-gray-400",
-                    ].join(" ")}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
+              {/* Navigation indicators */}
+              <div className="carousel-indicators absolute bottom-4 lg:bottom-6 inset-x-0 z-[100] flex items-center justify-center gap-3">
+                <label
+                  htmlFor="project1cb"
+                  className="carousel-indicator h-3 w-3 rounded-full cursor-pointer transition-all duration-300 bg-white/40 hover:bg-white/60"
+                ></label>
+                <label
+                  htmlFor="project2cb"
+                  className="carousel-indicator h-3 w-3 rounded-full cursor-pointer transition-all duration-300 bg-white/40 hover:bg-white/60"
+                ></label>
+                <label
+                  htmlFor="project3cb"
+                  className="carousel-indicator h-3 w-3 rounded-full cursor-pointer transition-all duration-300 bg-white/40 hover:bg-white/60"
+                ></label>
+                <label
+                  htmlFor="project4cb"
+                  className="carousel-indicator h-3 w-3 rounded-full cursor-pointer transition-all duration-300 bg-white/40 hover:bg-white/60"
+                ></label>
               </div>
             </div>
           </section>

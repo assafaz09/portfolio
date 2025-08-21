@@ -37,6 +37,10 @@ export const translations = {
     takeALook: "Take a Look",
     comingSoon: "Coming Soon",
 
+    // Carousel Navigation
+    nextProject: "Next",
+    startAgain: "Start Again",
+
     // Skills Section
     skillsTitle: "Technical Skills",
     skillsSubtitle: "Technologies and tools I work with",
@@ -181,6 +185,10 @@ export const translations = {
     // Buttons
     takeALook: "הסתכל",
     comingSoon: "בקרוב",
+
+    // Carousel Navigation
+    nextProject: "הבא",
+    startAgain: "התחל מחדש",
 
     // Skills Section
     skillsTitle: "כישורים טכניים",
