@@ -32,60 +32,15 @@ export default function Navbar({
   };
 
   // Handle CV download - using fetch with fallback
-  const handleDownloadCV = async () => {
-    try {
-      // Method 1: Try to fetch and download the PDF
-      const response = await fetch("/cv.pdf");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      // Create blob from response
-      const blob = await response.blob();
-
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "cv.pdf";
-
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.log("Fetch failed, trying direct download...", error);
-
-      // Method 2: Direct download as fallback
-      try {
-        const link = document.createElement("a");
-        link.href = "cv.pdf";
-        link.download = "cv.pdf";
-        link.style.display = "none";
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } catch (fallbackError) {
-        console.log(
-          "Direct download failed, trying window.open...",
-          fallbackError
-        );
-
-        // Method 3: Open in new tab as last resort
-        try {
-          window.open("/cv.pdf", "_blank");
-        } catch (finalError) {
-          console.error("All download methods failed:", finalError);
-          alert(
-            "CV download failed. Please try right-clicking the link and selecting 'Save as...'"
-          );
-        }
-      }
-    }
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/cv.pdf"; // תמיד מוחלט מהשורש של public
+    link.download = "Assaf_Azran_CV.pdf"; // השם שיורד למשתמש
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
+  
 
   return (
     <nav
