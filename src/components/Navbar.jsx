@@ -35,7 +35,7 @@ export default function Navbar({
   const handleDownloadCV = async () => {
     try {
       // Method 1: Try to fetch and download the PDF
-      const response = await fetch("assaf-azran-cv.pdf");
+      const response = await fetch("cv.pdf");
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -62,8 +62,8 @@ export default function Navbar({
       // Method 2: Direct download as fallback
       try {
         const link = document.createElement("a");
-        link.href = "assaf-azran-cv.pdf";
-        link.download = "Assaf_Azran_CV.pdf";
+        link.href = "cv.pdf";
+        link.download = "cv.pdf";
         link.style.display = "none";
         document.body.appendChild(link);
         link.click();
@@ -76,7 +76,7 @@ export default function Navbar({
 
         // Method 3: Open in new tab as last resort
         try {
-          window.open("assaf-azran-cv.pdf", "_blank");
+          window.open("cv.pdf", "_blank");
         } catch (finalError) {
           console.error("All download methods failed:", finalError);
           alert(
