@@ -1,28 +1,35 @@
 import "./App.css";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  useMemo,
+  useCallback,
+} from "react";
 import Navbar from "./components/Navbar";
-// 🚀 PERFORMANCE OPTIMIZATION: Dynamic imports for code splitting
-import { lazy, Suspense } from "react";
-
-const About = lazy(() => import("./components/About"));
-const Portfolio = lazy(() => import("./components/Portfolio"));
-import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
 import { translations } from "./translations";
 
-// 🚀 PERFORMANCE OPTIMIZATION: Memoized Tech Icon Component
-const TechIcon = memo(({ src, alt, className, style, animationDelay }) => (
-  <div
-    className={`floating-icon ${className || ""}`}
-    style={{ animationDelay, ...style }}
-  >
-    <img
-      src={src}
-      alt={alt}
-      className="tech-icon glow-on-hover"
-      loading="lazy"
-      decoding="async"
-    />
-  </div>
-));
+// 🚀 PERFORMANCE OPTIMIZATION: Dynamic imports for code splitting
+const About = lazy(() => import("./components/About"));
+const Portfolio = lazy(() => import("./components/Portfolio"));
+
+// 🚀 PERFORMANCE OPTIMIZATION: Memoized Tech Icon Component (currently unused - kept for future use)
+// const TechIcon = memo(({ src, alt, className, style, animationDelay }) => (
+//   <div
+//     className={`floating-icon ${className || ""}`}
+//     style={{ animationDelay, ...style }}
+//   >
+//     <img
+//       src={src}
+//       alt={alt}
+//       className="tech-icon glow-on-hover"
+//       loading="lazy"
+//       decoding="async"
+//     />
+//   </div>
+// ));
 
 function App() {
   const observerRef = useRef(null);
@@ -49,7 +56,7 @@ function App() {
         screenshots: [
           "project1.jpg",
           "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
-          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop=crop&center",
+          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
         ],
       },
       {
@@ -1662,7 +1669,7 @@ function App() {
               <div className="footer-bottom animate-fade-up animate-delay-500">
                 <div className="footer-divider"></div>
                 <p className="footer-copyright text-sm lg:text-base">
-                  © 2025Assaf Azran. Built with ❤️ and ☕
+                  © 2025 Assaf Azran. Built with ❤️ and ☕
                 </p>
               </div>
             </div>
