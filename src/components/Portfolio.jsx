@@ -343,7 +343,7 @@ export default function Portfolio({
                   {/* View Project Button */}
                   <button
                     onClick={() => window.open(project.link, "_blank")}
-                    className="view-button mt-6 sm:mt-8 px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    className="view-button"
                   >
                     {project.link === "#"
                       ? translations[currentLanguage].comingSoon

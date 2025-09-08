@@ -195,7 +195,7 @@ export default function About({
             {/* Background Image behind title */}
             <div className="relative mb-8 sm:mb-12 lg:mb-16">
               <img
-                src="/a1 (1).png"
+                src="assaf-new-photo.png"
                 alt="Assaf Azran Background"
                 className="about-title-background absolute w-24 h-24 sm:w-32 sm:h-32 lg:w-48 lg:h-48 object-cover opacity-95 rounded-full hidden sm:block"
                 style={{

@@ -1,93 +1,110 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import About from "./components/About";
-import Portfolio from "./components/Portfolio";
-import { useEffect, useRef, useState } from "react";
+// 🚀 PERFORMANCE OPTIMIZATION: Dynamic imports for code splitting
+import { lazy, Suspense } from "react";
+
+const About = lazy(() => import("./components/About"));
+const Portfolio = lazy(() => import("./components/Portfolio"));
+import { useEffect, useRef, useState, useMemo, useCallback, memo } from "react";
 import { translations } from "./translations";
+
+// 🚀 PERFORMANCE OPTIMIZATION: Memoized Tech Icon Component
+const TechIcon = memo(({ src, alt, className, style, animationDelay }) => (
+  <div
+    className={`floating-icon ${className || ""}`}
+    style={{ animationDelay, ...style }}
+  >
+    <img
+      src={src}
+      alt={alt}
+      className="tech-icon glow-on-hover"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+));
 
 function App() {
   const observerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLanguage, setCurrentLanguage] = useState("en");
 
-  const getProjects = () => [
-    {
-      id: 1,
-      title: translations[currentLanguage].studentSystem,
-      emoji: "🎓",
-      link: "https://f-student-system-production.up.railway.app/",
-      description: translations[currentLanguage].studentSystemDesc,
-      technologies: [
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "Express.js",
-        "JWT Auth",
-      ],
-      image: "project1.jpg",
-      screenshots: [
-        "project1.jpg",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop=crop&center",
-      ],
-    },
-    {
-      id: 2,
-      title: translations[currentLanguage].movieRate,
-      emoji: "🎬",
-      link: "https://github.com/assafaz09/movieRate",
-      description: translations[currentLanguage].movieRateDesc,
-      technologies: [
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "Express.js",
-        "Movie API",
-      ],
-      image: "🎬",
-    },
-    {
-      id: 3,
-      title: translations[currentLanguage].eventStore,
-      emoji: "🎪",
-      link: "#",
-      description: translations[currentLanguage].eventStoreDesc,
-      technologies: [
-        "React.js",
-        "Node.js",
-        "MongoDB",
-        "Express.js",
-        "Stripe API",
-        "Responsive Design",
-      ],
-      image: "🎪",
-    },
-    {
-      id: 4,
-      title: translations[currentLanguage].portfolioLanding,
-      emoji: "🌐",
-      link: "#",
-      description: translations[currentLanguage].portfolioLandingDesc,
-      technologies: [
-        "React.js",
-        "HTML5",
-        "CSS3",
-        "JavaScript",
-        "Responsive Design",
-        "Modern UI/UX",
-      ],
-      image: "🌐",
-    },
-  ];
+  // 🚀 PERFORMANCE OPTIMIZATION: Memoize expensive computations
+  const projects = useMemo(
+    () => [
+      {
+        id: 1,
+        title: translations[currentLanguage].studentSystem,
+        emoji: "🎓",
+        link: "https://f-student-system-production.up.railway.app/",
+        description: translations[currentLanguage].studentSystemDesc,
+        technologies: [
+          "React.js",
+          "Node.js",
+          "MongoDB",
+          "Express.js",
+          "JWT Auth",
+        ],
+        image: "project1.jpg",
+        screenshots: [
+          "project1.jpg",
+          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
+          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop=crop&center",
+        ],
+      },
+      {
+        id: 2,
+        title: translations[currentLanguage].movieRate,
+        emoji: "🎬",
+        link: "https://github.com/assafaz09/movieRate",
+        description: translations[currentLanguage].movieRateDesc,
+        technologies: [
+          "React.js",
+          "Node.js",
+          "MongoDB",
+          "Express.js",
+          "Movie API",
+        ],
+        image: "🎬",
+      },
+      {
+        id: 3,
+        title: translations[currentLanguage].eventStore,
+        emoji: "🎪",
+        link: "#",
+        description: translations[currentLanguage].eventStoreDesc,
+        technologies: [
+          "React.js",
+          "Node.js",
+          "MongoDB",
+          "Express.js",
+          "Stripe API",
+          "Responsive Design",
+        ],
+        image: "🎪",
+      },
+      {
+        id: 4,
+        title: translations[currentLanguage].portfolioLanding,
+        emoji: "🌐",
+        link: "#",
+        description: translations[currentLanguage].portfolioLandingDesc,
+        technologies: [
+          "React.js",
+          "HTML5",
+          "CSS3",
+          "JavaScript",
+          "Responsive Design",
+          "Modern UI/UX",
+        ],
+        image: "🌐",
+      },
+    ],
+    [currentLanguage]
+  ); // Only recalculate when language changes
 
-  const projects = getProjects();
-
-  // Update projects when language changes
-  useEffect(() => {
-    // This will trigger a re-render when currentLanguage changes
-  }, [currentLanguage]);
-
-  const handleProjectImageClick = (project) => {
+  // 🚀 PERFORMANCE OPTIMIZATION: Memoize event handlers to prevent unnecessary re-renders
+  const handleProjectImageClick = useCallback((project) => {
     if (project.id === 4) {
       // Portfolio & Landing Pages - לעמוד הפורטפוליו
       setCurrentPage("portfolio");
@@ -96,9 +113,9 @@ function App() {
       window.open(project.link, "_blank", "noopener,noreferrer");
     }
     // אם זה "Coming Soon" (link === "#") - לא עושים כלום
-  };
+  }, []);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = useCallback((sectionId) => {
     if (sectionId === "about") {
       setCurrentPage("about");
       return;
@@ -114,16 +131,22 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
-  };
+  }, []);
 
+  // 🚀 PERFORMANCE OPTIMIZATION: Optimized Intersection Observer with requestAnimationFrame
   useEffect(() => {
-    // Create intersection observer for animations
+    // Create intersection observer for animations with performance optimizations
     observerRef.current = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("animate-in");
-          }
+        // Use requestAnimationFrame for smooth animations and better performance
+        requestAnimationFrame(() => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("animate-in");
+              // Unobserve after animation to save resources
+              observerRef.current?.unobserve(entry.target);
+            }
+          });
         });
       },
       {
@@ -132,20 +155,20 @@ function App() {
       }
     );
 
-    // Use setTimeout to ensure DOM is fully rendered
+    // 🚀 PERFORMANCE OPTIMIZATION: Batch DOM queries and use requestAnimationFrame
     const timer = setTimeout(() => {
-      // Observe all animated elements with different animation types
-      const animationSelectors = [
-        ".animate-on-scroll",
-        ".animate-fade-up",
-        ".animate-fade-left",
-        ".animate-fade-right",
-        ".animate-scale-up",
-      ];
+      requestAnimationFrame(() => {
+        // Single query for all animation selectors - more efficient
+        const allAnimatedElements = document.querySelectorAll(
+          ".animate-on-scroll, .animate-fade-up, .animate-fade-left, .animate-fade-right, .animate-scale-up"
+        );
 
-      animationSelectors.forEach((selector) => {
-        const elements = document.querySelectorAll(selector);
-        elements.forEach((el) => observerRef.current.observe(el));
+        // Batch observe all elements at once
+        allAnimatedElements.forEach((el) => {
+          if (observerRef.current) {
+            observerRef.current.observe(el);
+          }
+        });
       });
     }, 100);
 
@@ -335,11 +358,16 @@ function App() {
               {/* Personal Image - Behind headings with animation */}
               <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-80 z-0">
                 <img
-                  src="/assafP.png"
+                  src="/תמונת תדמית (2).png"
                   alt="Assaf"
-                  className="w-200 h-150 object-cover rounded-full shadow-2xl animate-float"
+                  className="h-150 object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
+                  loading="eager"
+                  decoding="async"
                   style={{
+                    scale: "0.55",
                     filter: "drop-shadow(0 0 25px rgba(6, 182, 212, 0.7))",
+                    margin: "30px",
+                    marginLeft: "80px",
                   }}
                 />
               </div>
@@ -669,24 +697,32 @@ function App() {
                             <img
                               src="p1.jpg"
                               alt="Student System Interface"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : project.id === 2 ? (
                             <img
                               src="m11.jpg"
                               alt="Movie Rating Interface"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : project.id === 3 ? (
                             <img
                               src="P3.jpg"
                               alt="Event Production E-commerce"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : (
                             <img
                               src="assafpps.png"
                               alt="Portfolio & Landing Pages"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           )}
@@ -1348,7 +1384,7 @@ function App() {
                 <div className="contact-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 animate-fade-up">
                   <div
                     style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2"
+                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
                   >
                     <h3 className="contact-label text-white text-lg lg:text-xl">
                       Phone
@@ -1360,7 +1396,7 @@ function App() {
 
                   <div
                     style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2"
+                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
                   >
                     <h3 className="contact-label text-white text-lg lg:text-xl">
                       Email
@@ -1372,7 +1408,7 @@ function App() {
 
                   <div
                     style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2"
+                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
                   >
                     <h3 className="contact-label text-white text-lg lg:text-xl">
                       GitHub
@@ -1389,7 +1425,7 @@ function App() {
 
                   <div
                     style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2"
+                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
                   >
                     <h3 className="contact-label text-white text-lg lg:text-xl">
                       LinkedIn
@@ -1633,17 +1669,33 @@ function App() {
           </footer>
         </>
       ) : currentPage === "portfolio" ? (
-        <Portfolio
-          onNavigate={scrollToSection}
-          currentLanguage={currentLanguage}
-          onLanguageChange={setCurrentLanguage}
-        />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-cyan-500"></div>
+            </div>
+          }
+        >
+          <Portfolio
+            onNavigate={scrollToSection}
+            currentLanguage={currentLanguage}
+            onLanguageChange={setCurrentLanguage}
+          />
+        </Suspense>
       ) : currentPage === "about" ? (
-        <About
-          onNavigate={scrollToSection}
-          currentLanguage={currentLanguage}
-          onLanguageChange={setCurrentLanguage}
-        />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center min-h-screen">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-cyan-500"></div>
+            </div>
+          }
+        >
+          <About
+            onNavigate={scrollToSection}
+            currentLanguage={currentLanguage}
+            onLanguageChange={setCurrentLanguage}
+          />
+        </Suspense>
       ) : (
         <div style={{ padding: "100px 20px", textAlign: "center" }}>
           <h1 style={{ color: "red", fontSize: "3rem" }}>ABOUT PAGE TEST</h1>
