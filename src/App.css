@@ -27,36 +27,16 @@ body {
 }
 
 /* Hebrew text optimization for Open Sans - ONLY for Hebrew */
-[dir="rtl"] {
+[dir="rtl"],
+[dir="rtl"] *,
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6,
+[dir="rtl"] p, [dir="rtl"] span, [dir="rtl"] div, [dir="rtl"] button, [dir="rtl"] input, [dir="rtl"] textarea, [dir="rtl"] select {
   font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+[dir="rtl"] {
   font-feature-settings: "liga" 1, "kern" 1;
   text-rendering: optimizeLegibility;
-}
-
-/* Hebrew text optimization for Open Sans - ONLY for Hebrew */
-[dir="rtl"] * {
-  font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
-}
-
-/* Hebrew text optimization for Open Sans - ONLY for Hebrew */
-[dir="rtl"] h1,
-[dir="rtl"] h2,
-[dir="rtl"] h3,
-[dir="rtl"] h4,
-[dir="rtl"] h5,
-[dir="rtl"] h6 {
-  font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
-}
-
-/* Hebrew text optimization for Open Sans - ONLY for Hebrew */
-[dir="rtl"] p,
-[dir="rtl"] span,
-[dir="rtl"] div,
-[dir="rtl"] button,
-[dir="rtl"] input,
-[dir="rtl"] textarea,
-[dir="rtl"] select {
-  font-family: "Open Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important;
 }
 
 /* English text keeps original font */
