@@ -363,18 +363,18 @@ function App() {
 
             <div className="hero-content text-center z-10 relative pt-20">
               {/* Personal Image - Behind headings with animation */}
-              <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-80 z-0">
+              <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10">
                 <img
                   src="/assaf-profile-image.png"
                   alt="Assaf"
-                  className="h-150 object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
+                  className="w-full h-full object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
                   loading="eager"
                   decoding="async"
                   style={{
-                    scale: "0.55",
+                    scale: "0.7",
                     filter: "drop-shadow(0 0 25px rgba(6, 182, 212, 0.7))",
-                    margin: "30px",
-                    marginLeft: "80px",
+                    margin: "20px",
+                    marginLeft: "40px",
                   }}
                 />
               </div>
