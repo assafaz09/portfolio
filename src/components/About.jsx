@@ -164,6 +164,11 @@ export default function About({
             src="/assaf-photo-1.png"
             alt="Assaf Personal"
             className="tech-icon rounded-full"
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.target.src = "/assafP.png"; // Fallback
+            }}
             style={{ width: "60px", height: "60px", objectFit: "cover" }}
           />
         </div>
@@ -175,6 +180,11 @@ export default function About({
             src="/assaf-photo-2.png"
             alt="Assaf Personal"
             className="tech-icon rounded-full"
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.target.src = "/assafP.png"; // Fallback
+            }}
             style={{ width: "60px", height: "60px", objectFit: "cover" }}
           />
         </div>
@@ -186,6 +196,11 @@ export default function About({
             src="/assaf-photo-3.png"
             alt="Assaf Personal"
             className="tech-icon rounded-full"
+            loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.target.src = "/assafP.png"; // Fallback
+            }}
             style={{ width: "60px", height: "60px", objectFit: "cover" }}
           />
         </div>

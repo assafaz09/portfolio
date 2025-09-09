@@ -55,8 +55,6 @@ function App() {
         image: "project1.jpg",
         screenshots: [
           "project1.jpg",
-          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
-          "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop&crop=center",
         ],
       },
       {
@@ -368,8 +366,11 @@ function App() {
                   src="/assaf-profile-image.png"
                   alt="Assaf"
                   className="w-full h-full object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
-                  loading="eager"
+                  loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.target.src = "/assafP.png"; // Fallback image
+                  }}
                   style={{
                     scale: "0.7",
                     filter: "drop-shadow(0 0 25px rgba(6, 182, 212, 0.7))",
@@ -706,6 +707,9 @@ function App() {
                               alt="Student System Interface"
                               loading="lazy"
                               decoding="async"
+                              onError={(e) => {
+                                e.target.src = "/pro1.png"; // Fallback
+                              }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : project.id === 2 ? (
@@ -714,6 +718,9 @@ function App() {
                               alt="Movie Rating Interface"
                               loading="lazy"
                               decoding="async"
+                              onError={(e) => {
+                                e.target.src = "/pro2.png"; // Fallback
+                              }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : project.id === 3 ? (
@@ -722,6 +729,9 @@ function App() {
                               alt="Event Production E-commerce"
                               loading="lazy"
                               decoding="async"
+                              onError={(e) => {
+                                e.target.src = "/pro3.png"; // Fallback
+                              }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : (
@@ -730,6 +740,9 @@ function App() {
                               alt="Portfolio & Landing Pages"
                               loading="lazy"
                               decoding="async"
+                              onError={(e) => {
+                                e.target.src = "/pro1.png"; // Fallback
+                              }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           )}
