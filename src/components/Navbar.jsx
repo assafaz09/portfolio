@@ -68,7 +68,7 @@ export default function Navbar({
               }`}
             >
               <img
-                src="/assaf's logo (1).png"
+                src="./assaf's logo (1).png"
                 alt="Assaf Azran Logo"
                 className="w-full h-full object-cover"
               />
@@ -104,7 +104,7 @@ export default function Navbar({
               >
                 {translations[currentLanguage].about}
               </button>
-                <button
+              <button
                 onClick={() => handleNavigation("portfolio")}
                 className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                   activeSection === "portfolio"
@@ -123,7 +123,7 @@ export default function Navbar({
                 }`}
               >
                 {translations[currentLanguage].contact}
-                </button>
+              </button>
             </div>
           </div>
 

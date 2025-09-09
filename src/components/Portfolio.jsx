@@ -21,8 +21,8 @@ export default function Portfolio({
       bgColor: "bg-black/20 backdrop-blur-sm border border-white/20",
       borderColor: "hover:border-pink-300/40",
       link: "https://chen-cosmetics-production.up.railway.app/",
-      image: "/pro1.png",
-      additionalImage: "/pro2.1.png",
+      image: "./pro1.png",
+      additionalImage: "./pro2.1.png",
     },
     {
       id: 2,
@@ -32,8 +32,8 @@ export default function Portfolio({
       bgColor: "bg-black/20 backdrop-blur-sm border border-white/20",
       borderColor: "hover:border-blue-300/40",
       link: "https://chakihouse-production.up.railway.app/",
-      image: "/pro2 (1).png",
-      additionalImage: "/pro1.1.png",
+      image: "./pro2 (1).png",
+      additionalImage: "./pro1.1.png",
     },
     {
       id: 3,
@@ -43,8 +43,8 @@ export default function Portfolio({
       bgColor: "bg-black/20 backdrop-blur-sm border border-white/20",
       borderColor: "hover:border-green-300/40",
       link: "#",
-      image: "/pro3.png",
-      additionalImage: "/pro3.1.png",
+      image: "./pro3.png",
+      additionalImage: "./pro3.1.png",
     },
   ];
 

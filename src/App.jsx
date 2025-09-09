@@ -17,34 +17,35 @@ const About = lazy(() => import("./components/About"));
 const Portfolio = lazy(() => import("./components/Portfolio"));
 
 // 🚀 PERFORMANCE OPTIMIZATION: Memoized Tech Icon Component
-const FloatingIcon = memo(({ src, alt, top, left, right, animationDelay, className = "" }) => (
-  <div
-    className={`floating-icon ${className}`}
-    style={{ 
-      top, 
-      left, 
-      right, 
-      animationDelay 
-    }}
-  >
-    <img
-      src={src}
-      alt={alt}
-      className="tech-icon glow-on-hover"
-      loading="lazy"
-      decoding="async"
-      onError={(e) => {
-        e.target.style.display = 'none';
+const FloatingIcon = memo(
+  ({ src, alt, top, left, right, animationDelay, className = "" }) => (
+    <div
+      className={`floating-icon ${className}`}
+      style={{
+        top,
+        left,
+        right,
+        animationDelay,
       }}
-    />
-  </div>
-));
+    >
+      <img
+        src={src}
+        alt={alt}
+        className="tech-icon glow-on-hover"
+        loading="lazy"
+        decoding="async"
+        onError={(e) => {
+          e.target.style.display = "none";
+        }}
+      />
+    </div>
+  )
+);
 
 function App() {
   const observerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLanguage, setCurrentLanguage] = useState("en");
-
 
   // 🚀 PERFORMANCE OPTIMIZATION: Memoize expensive computations
   const projects = useMemo(
@@ -242,18 +243,90 @@ function App() {
             <div className="circuit-line"></div>
 
             {/* Floating Tech Icons for Hero */}
-            <FloatingIcon src="/vitejs-svgrepo-com.svg" alt="Vite" top="8%" left="12%" animationDelay="0.1s" />
-            <FloatingIcon src="/tailwind-svgrepo-com.svg" alt="Tailwind" top="25%" right="18%" animationDelay="1.1s" />
-            <FloatingIcon src="/node-js-svgrepo-com.svg" alt="Node.js" top="42%" left="9%" animationDelay="2.1s" />
-            <FloatingIcon src="/mongodb-svgrepo-com.svg" alt="MongoDB" top="58%" right="7%" animationDelay="3.1s" />
-            <FloatingIcon src="/logo-ts-svgrepo-com.svg" alt="TypeScript" top="75%" left="28%" animationDelay="4.1s" />
-            <FloatingIcon src="/html-5-svgrepo-com.svg" alt="HTML5" top="19%" right="38%" animationDelay="5.1s" />
-            <FloatingIcon src="/css-3-svgrepo-com.svg" alt="CSS3" top="36%" left="47%" animationDelay="6.1s" />
-            <FloatingIcon src="/mongo-svgrepo-com.svg" alt="Mongo" top="70%" left="65%" animationDelay="8.1s" />
-            <FloatingIcon src="/next-dot-js-svgrepo-com.svg" alt="Next.js" top="87%" right="55%" animationDelay="9.1s" />
-            <FloatingIcon src="/js02-svgrepo-com.svg" alt="JavaScript" top="32%" right="78%" animationDelay="11.1s" />
-            <FloatingIcon src="/github-svgrepo-com.svg" alt="GitHub" top="49%" left="88%" animationDelay="12.1s" />
-            <FloatingIcon src="/github-svgrepo-com (2).svg" alt="GitHub Alt" top="66%" right="88%" animationDelay="13.1s" />
+            <FloatingIcon
+              src="./vitejs-svgrepo-com.svg"
+              alt="Vite"
+              top="8%"
+              left="12%"
+              animationDelay="0.1s"
+            />
+            <FloatingIcon
+              src="./tailwind-svgrepo-com.svg"
+              alt="Tailwind"
+              top="25%"
+              right="18%"
+              animationDelay="1.1s"
+            />
+            <FloatingIcon
+              src="./node-js-svgrepo-com.svg"
+              alt="Node.js"
+              top="42%"
+              left="9%"
+              animationDelay="2.1s"
+            />
+            <FloatingIcon
+              src="./mongodb-svgrepo-com.svg"
+              alt="MongoDB"
+              top="58%"
+              right="7%"
+              animationDelay="3.1s"
+            />
+            <FloatingIcon
+              src="./logo-ts-svgrepo-com.svg"
+              alt="TypeScript"
+              top="75%"
+              left="28%"
+              animationDelay="4.1s"
+            />
+            <FloatingIcon
+              src="./html-5-svgrepo-com.svg"
+              alt="HTML5"
+              top="19%"
+              right="38%"
+              animationDelay="5.1s"
+            />
+            <FloatingIcon
+              src="./css-3-svgrepo-com.svg"
+              alt="CSS3"
+              top="36%"
+              left="47%"
+              animationDelay="6.1s"
+            />
+            <FloatingIcon
+              src="./mongo-svgrepo-com.svg"
+              alt="Mongo"
+              top="70%"
+              left="65%"
+              animationDelay="8.1s"
+            />
+            <FloatingIcon
+              src="./next-dot-js-svgrepo-com.svg"
+              alt="Next.js"
+              top="87%"
+              right="55%"
+              animationDelay="9.1s"
+            />
+            <FloatingIcon
+              src="./js02-svgrepo-com.svg"
+              alt="JavaScript"
+              top="32%"
+              right="78%"
+              animationDelay="11.1s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com.svg"
+              alt="GitHub"
+              top="49%"
+              left="88%"
+              animationDelay="12.1s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com (2).svg"
+              alt="GitHub Alt"
+              top="66%"
+              right="88%"
+              animationDelay="13.1s"
+            />
 
             <div className="circuit-line"></div>
 
@@ -261,12 +334,15 @@ function App() {
               {/* Personal Image - Behind headings with animation */}
               <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10">
                 <img
-                  src="/mainPic.png"
+                  src="./mainPic.png"
                   alt="Assaf"
                   className="w-full h-full object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
                   loading="lazy"
                   decoding="async"
-            
+                  onError={(e) => {
+                    console.error("Failed to load image:", e.target.src);
+                    e.target.src = "/assaf-profile-image.png"; // Fallback image
+                  }}
                   style={{
                     scale: "0.7",
                     filter: "drop-shadow(0 0 25px rgba(6, 182, 212, 0.7))",
@@ -338,17 +414,83 @@ function App() {
               </div>
 
               {/* Floating Tech Icons */}
-              <FloatingIcon src="/vitejs-svgrepo-com.svg" alt="Vite" top="7%" left="11%" animationDelay="0s" />
-              <FloatingIcon src="/tailwind-svgrepo-com.svg" alt="Tailwind" top="24%" right="14%" animationDelay="1s" />
-              <FloatingIcon src="/node-js-svgrepo-com.svg" alt="Node.js" top="41%" left="6%" animationDelay="2s" />
-              <FloatingIcon src="/mongodb-svgrepo-com.svg" alt="MongoDB" top="58%" right="21%" animationDelay="3s" />
-              <FloatingIcon src="/logo-ts-svgrepo-com.svg" alt="TypeScript" top="75%" left="19%" animationDelay="4s" />
-              <FloatingIcon src="/html-5-svgrepo-com.svg" alt="HTML5" top="92%" right="9%" animationDelay="5s" />
-              <FloatingIcon src="/css-3-svgrepo-com.svg" alt="CSS3" top="16%" left="33%" animationDelay="6s" />
-              <FloatingIcon src="/next-dot-js-svgrepo-com.svg" alt="Next.js" top="67%" right="62%" animationDelay="9s" />
-              <FloatingIcon src="/js02-svgrepo-com.svg" alt="JavaScript" top="11%" right="75%" animationDelay="11s" />
-              <FloatingIcon src="/github-svgrepo-com.svg" alt="GitHub" top="28%" left="82%" animationDelay="12s" />
-              <FloatingIcon src="/github-svgrepo-com (2).svg" alt="GitHub Alt" top="45%" right="89%" animationDelay="13s" />
+              <FloatingIcon
+                src="./vitejs-svgrepo-com.svg"
+                alt="Vite"
+                top="7%"
+                left="11%"
+                animationDelay="0s"
+              />
+              <FloatingIcon
+                src="./tailwind-svgrepo-com.svg"
+                alt="Tailwind"
+                top="24%"
+                right="14%"
+                animationDelay="1s"
+              />
+              <FloatingIcon
+                src="./node-js-svgrepo-com.svg"
+                alt="Node.js"
+                top="41%"
+                left="6%"
+                animationDelay="2s"
+              />
+              <FloatingIcon
+                src="./mongodb-svgrepo-com.svg"
+                alt="MongoDB"
+                top="58%"
+                right="21%"
+                animationDelay="3s"
+              />
+              <FloatingIcon
+                src="./logo-ts-svgrepo-com.svg"
+                alt="TypeScript"
+                top="75%"
+                left="19%"
+                animationDelay="4s"
+              />
+              <FloatingIcon
+                src="./html-5-svgrepo-com.svg"
+                alt="HTML5"
+                top="92%"
+                right="9%"
+                animationDelay="5s"
+              />
+              <FloatingIcon
+                src="./css-3-svgrepo-com.svg"
+                alt="CSS3"
+                top="16%"
+                left="33%"
+                animationDelay="6s"
+              />
+              <FloatingIcon
+                src="./next-dot-js-svgrepo-com.svg"
+                alt="Next.js"
+                top="67%"
+                right="62%"
+                animationDelay="9s"
+              />
+              <FloatingIcon
+                src="./js02-svgrepo-com.svg"
+                alt="JavaScript"
+                top="11%"
+                right="75%"
+                animationDelay="11s"
+              />
+              <FloatingIcon
+                src="./github-svgrepo-com.svg"
+                alt="GitHub"
+                top="28%"
+                left="82%"
+                animationDelay="12s"
+              />
+              <FloatingIcon
+                src="./github-svgrepo-com (2).svg"
+                alt="GitHub Alt"
+                top="45%"
+                right="89%"
+                animationDelay="13s"
+              />
 
               <div
                 className="glowing-shape"
@@ -498,45 +640,61 @@ function App() {
                           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
                           {project.id === 1 ? (
                             <img
-                              src="p1.jpg"
+                              src="./p1.jpg"
                               alt="Student System Interface"
                               loading="lazy"
                               decoding="async"
                               onError={(e) => {
-                                e.target.src = "/pro1.png"; // Fallback
+                                console.error(
+                                  "Failed to load p1.jpg:",
+                                  e.target.src
+                                );
+                                e.target.src = "./pro1.png"; // Fallback
                               }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : project.id === 2 ? (
                             <img
-                              src="m11.jpg"
+                              src="./m11.jpg"
                               alt="Movie Rating Interface"
                               loading="lazy"
                               decoding="async"
                               onError={(e) => {
-                                e.target.src = "/pro2.png"; // Fallback
+                                console.error(
+                                  "Failed to load m11.jpg:",
+                                  e.target.src
+                                );
+                                e.target.src = "./pro2.png"; // Fallback
                               }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : project.id === 3 ? (
                             <img
-                              src="P3.jpg"
+                              src="./P3.jpg"
                               alt="Event Production E-commerce"
                               loading="lazy"
                               decoding="async"
                               onError={(e) => {
-                                e.target.src = "/pro3.png"; // Fallback
+                                console.error(
+                                  "Failed to load P3.jpg:",
+                                  e.target.src
+                                );
+                                e.target.src = "./pro3.png"; // Fallback
                               }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
                           ) : (
                             <img
-                              src="assafpps.png"
+                              src="./assafpps.png"
                               alt="Portfolio & Landing Pages"
                               loading="lazy"
                               decoding="async"
                               onError={(e) => {
-                                e.target.src = "/pro1.png"; // Fallback
+                                console.error(
+                                  "Failed to load assafpps.png:",
+                                  e.target.src
+                                );
+                                e.target.src = "./pro1.png"; // Fallback
                               }}
                               className="w-full h-auto rounded-xl shadow-2xl relative z-10 group-hover:scale-105 transition-transform duration-500"
                             />
@@ -609,18 +767,90 @@ function App() {
             ></div>
 
             {/* Floating Tech Icons for Skills */}
-            <FloatingIcon src="/vitejs-svgrepo-com.svg" alt="Vite" top="9%" left="13%" animationDelay="0.2s" />
-            <FloatingIcon src="/tailwind-svgrepo-com.svg" alt="Tailwind" top="26%" right="16%" animationDelay="1.2s" />
-            <FloatingIcon src="/node-js-svgrepo-com.svg" alt="Node.js" top="43%" left="7%" animationDelay="2.2s" />
-            <FloatingIcon src="/mongodb-svgrepo-com.svg" alt="MongoDB" top="60%" right="23%" animationDelay="3.2s" />
-            <FloatingIcon src="/logo-ts-svgrepo-com.svg" alt="TypeScript" top="77%" left="25%" animationDelay="4.2s" />
-            <FloatingIcon src="/html-5-svgrepo-com.svg" alt="HTML5" top="94%" right="11%" animationDelay="5.2s" />
-            <FloatingIcon src="/css-3-svgrepo-com.svg" alt="CSS3" top="17%" left="39%" animationDelay="6.2s" />
-            <FloatingIcon src="/mongo-svgrepo-com.svg" alt="Mongo" top="51%" left="57%" animationDelay="8.2s" />
-            <FloatingIcon src="/next-dot-js-svgrepo-com.svg" alt="Next.js" top="68%" right="60%" animationDelay="9.2s" />
-            <FloatingIcon src="/js02-svgrepo-com.svg" alt="JavaScript" top="12%" right="72%" animationDelay="11.2s" />
-            <FloatingIcon src="/github-svgrepo-com.svg" alt="GitHub" top="29%" left="79%" animationDelay="12.2s" />
-            <FloatingIcon src="/github-svgrepo-com (2).svg" alt="GitHub Alt" top="46%" right="86%" animationDelay="13.2s" />
+            <FloatingIcon
+              src="./vitejs-svgrepo-com.svg"
+              alt="Vite"
+              top="9%"
+              left="13%"
+              animationDelay="0.2s"
+            />
+            <FloatingIcon
+              src="./tailwind-svgrepo-com.svg"
+              alt="Tailwind"
+              top="26%"
+              right="16%"
+              animationDelay="1.2s"
+            />
+            <FloatingIcon
+              src="./node-js-svgrepo-com.svg"
+              alt="Node.js"
+              top="43%"
+              left="7%"
+              animationDelay="2.2s"
+            />
+            <FloatingIcon
+              src="./mongodb-svgrepo-com.svg"
+              alt="MongoDB"
+              top="60%"
+              right="23%"
+              animationDelay="3.2s"
+            />
+            <FloatingIcon
+              src="./logo-ts-svgrepo-com.svg"
+              alt="TypeScript"
+              top="77%"
+              left="25%"
+              animationDelay="4.2s"
+            />
+            <FloatingIcon
+              src="./html-5-svgrepo-com.svg"
+              alt="HTML5"
+              top="94%"
+              right="11%"
+              animationDelay="5.2s"
+            />
+            <FloatingIcon
+              src="./css-3-svgrepo-com.svg"
+              alt="CSS3"
+              top="17%"
+              left="39%"
+              animationDelay="6.2s"
+            />
+            <FloatingIcon
+              src="./mongo-svgrepo-com.svg"
+              alt="Mongo"
+              top="51%"
+              left="57%"
+              animationDelay="8.2s"
+            />
+            <FloatingIcon
+              src="./next-dot-js-svgrepo-com.svg"
+              alt="Next.js"
+              top="68%"
+              right="60%"
+              animationDelay="9.2s"
+            />
+            <FloatingIcon
+              src="./js02-svgrepo-com.svg"
+              alt="JavaScript"
+              top="12%"
+              right="72%"
+              animationDelay="11.2s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com.svg"
+              alt="GitHub"
+              top="29%"
+              left="79%"
+              animationDelay="12.2s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com (2).svg"
+              alt="GitHub Alt"
+              top="46%"
+              right="86%"
+              animationDelay="13.2s"
+            />
 
             <div className="max-w-4xl lg:max-w-6xl mx-auto relative z-10 px-4">
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center mb-12 lg:mb-16 text-white animate-fade-left">
@@ -783,16 +1013,76 @@ function App() {
             ></div>
 
             {/* Floating Tech Icons for Education */}
-            <FloatingIcon src="/vitejs-svgrepo-com.svg" alt="Vite" top="11%" left="14%" animationDelay="0.5s" />
-            <FloatingIcon src="/tailwind-svgrepo-com.svg" alt="Tailwind" top="28%" right="19%" animationDelay="1.5s" />
-            <FloatingIcon src="/node-js-svgrepo-com.svg" alt="Node.js" top="45%" left="8%" animationDelay="2.5s" />
-            <FloatingIcon src="/mongodb-svgrepo-com.svg" alt="MongoDB" top="62%" right="26%" animationDelay="3.5s" />
-            <FloatingIcon src="/mongo-svgrepo-com.svg" alt="Mongo" top="96%" right="32%" animationDelay="5.5s" />
-            <FloatingIcon src="/next-dot-js-svgrepo-com.svg" alt="Next.js" top="13%" left="48%" animationDelay="6.5s" />
-            <FloatingIcon src="/node-js-svgrepo-com (1).svg" alt="Node.js Alt" top="30%" right="55%" animationDelay="7.5s" />
-            <FloatingIcon src="/js02-svgrepo-com.svg" alt="JavaScript" top="47%" left="62%" animationDelay="8.5s" />
-            <FloatingIcon src="/github-svgrepo-com.svg" alt="GitHub" top="64%" right="69%" animationDelay="9.5s" />
-            <FloatingIcon src="/github-svgrepo-com (2).svg" alt="GitHub Alt" top="81%" left="76%" animationDelay="10.5s" />
+            <FloatingIcon
+              src="./vitejs-svgrepo-com.svg"
+              alt="Vite"
+              top="11%"
+              left="14%"
+              animationDelay="0.5s"
+            />
+            <FloatingIcon
+              src="./tailwind-svgrepo-com.svg"
+              alt="Tailwind"
+              top="28%"
+              right="19%"
+              animationDelay="1.5s"
+            />
+            <FloatingIcon
+              src="./node-js-svgrepo-com.svg"
+              alt="Node.js"
+              top="45%"
+              left="8%"
+              animationDelay="2.5s"
+            />
+            <FloatingIcon
+              src="./mongodb-svgrepo-com.svg"
+              alt="MongoDB"
+              top="62%"
+              right="26%"
+              animationDelay="3.5s"
+            />
+            <FloatingIcon
+              src="./mongo-svgrepo-com.svg"
+              alt="Mongo"
+              top="96%"
+              right="32%"
+              animationDelay="5.5s"
+            />
+            <FloatingIcon
+              src="./next-dot-js-svgrepo-com.svg"
+              alt="Next.js"
+              top="13%"
+              left="48%"
+              animationDelay="6.5s"
+            />
+            <FloatingIcon
+              src="./node-js-svgrepo-com (1).svg"
+              alt="Node.js Alt"
+              top="30%"
+              right="55%"
+              animationDelay="7.5s"
+            />
+            <FloatingIcon
+              src="./js02-svgrepo-com.svg"
+              alt="JavaScript"
+              top="47%"
+              left="62%"
+              animationDelay="8.5s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com.svg"
+              alt="GitHub"
+              top="64%"
+              right="69%"
+              animationDelay="9.5s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com (2).svg"
+              alt="GitHub Alt"
+              top="81%"
+              left="76%"
+              animationDelay="10.5s"
+            />
 
             <div className="container px-4">
               <div className="animate-on-scroll">
@@ -889,16 +1179,76 @@ function App() {
             ></div>
 
             {/* Floating Tech Icons for Contact */}
-            <FloatingIcon src="/logo-ts-svgrepo-com.svg" alt="TypeScript" top="12%" left="11%" animationDelay="0.3s" />
-            <FloatingIcon src="/html-5-svgrepo-com.svg" alt="HTML5" top="29%" right="17%" animationDelay="1.3s" />
-            <FloatingIcon src="/css-3-svgrepo-com.svg" alt="CSS3" top="46%" left="6%" animationDelay="2.3s" />
-            <FloatingIcon src="/vitejs-svgrepo-com.svg" alt="Vite" top="63%" right="24%" animationDelay="3.3s" />
-            <FloatingIcon src="/mongo-svgrepo-com.svg" alt="Mongo" top="97%" right="38%" animationDelay="5.3s" />
-            <FloatingIcon src="/next-dot-js-svgrepo-com.svg" alt="Next.js" top="18%" left="45%" animationDelay="6.3s" />
-            <FloatingIcon src="/node-js-svgrepo-com (1).svg" alt="Node.js Alt" top="35%" left="58%" animationDelay="7.3s" />
-            <FloatingIcon src="/js02-svgrepo-com.svg" alt="JavaScript" top="52%" right="65%" animationDelay="8.3s" />
-            <FloatingIcon src="/github-svgrepo-com.svg" alt="GitHub" top="69%" left="78%" animationDelay="9.3s" />
-            <FloatingIcon src="/github-svgrepo-com (2).svg" alt="GitHub Alt" top="86%" right="81%" animationDelay="10.3s" />
+            <FloatingIcon
+              src="./logo-ts-svgrepo-com.svg"
+              alt="TypeScript"
+              top="12%"
+              left="11%"
+              animationDelay="0.3s"
+            />
+            <FloatingIcon
+              src="./html-5-svgrepo-com.svg"
+              alt="HTML5"
+              top="29%"
+              right="17%"
+              animationDelay="1.3s"
+            />
+            <FloatingIcon
+              src="./css-3-svgrepo-com.svg"
+              alt="CSS3"
+              top="46%"
+              left="6%"
+              animationDelay="2.3s"
+            />
+            <FloatingIcon
+              src="./vitejs-svgrepo-com.svg"
+              alt="Vite"
+              top="63%"
+              right="24%"
+              animationDelay="3.3s"
+            />
+            <FloatingIcon
+              src="./mongo-svgrepo-com.svg"
+              alt="Mongo"
+              top="97%"
+              right="38%"
+              animationDelay="5.3s"
+            />
+            <FloatingIcon
+              src="./next-dot-js-svgrepo-com.svg"
+              alt="Next.js"
+              top="18%"
+              left="45%"
+              animationDelay="6.3s"
+            />
+            <FloatingIcon
+              src="./node-js-svgrepo-com (1).svg"
+              alt="Node.js Alt"
+              top="35%"
+              left="58%"
+              animationDelay="7.3s"
+            />
+            <FloatingIcon
+              src="./js02-svgrepo-com.svg"
+              alt="JavaScript"
+              top="52%"
+              right="65%"
+              animationDelay="8.3s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com.svg"
+              alt="GitHub"
+              top="69%"
+              left="78%"
+              animationDelay="9.3s"
+            />
+            <FloatingIcon
+              src="./github-svgrepo-com (2).svg"
+              alt="GitHub Alt"
+              top="86%"
+              right="81%"
+              animationDelay="10.3s"
+            />
 
             <div className="container px-4">
               <div className="animate-fade-right">

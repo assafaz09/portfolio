@@ -86,14 +86,18 @@ export default function About({
           className="floating-icon"
           style={{ top: "15%", left: "12%", animationDelay: "0.1s" }}
         >
-          <img src="/vitejs-svgrepo-com.svg" alt="Vite" className="tech-icon" />
+          <img
+            src="./vitejs-svgrepo-com.svg"
+            alt="Vite"
+            className="tech-icon"
+          />
         </div>
         <div
           className="floating-icon"
           style={{ top: "32%", right: "18%", animationDelay: "1.1s" }}
         >
           <img
-            src="/tailwind-svgrepo-com.svg"
+            src="./tailwind-svgrepo-com.svg"
             alt="Tailwind"
             className="tech-icon"
           />
@@ -103,7 +107,7 @@ export default function About({
           style={{ top: "49%", left: "9%", animationDelay: "2.1s" }}
         >
           <img
-            src="/node-js-svgrepo-com.svg"
+            src="./node-js-svgrepo-com.svg"
             alt="Node.js"
             className="tech-icon"
           />
@@ -113,7 +117,7 @@ export default function About({
           style={{ top: "66%", right: "22%", animationDelay: "3.1s" }}
         >
           <img
-            src="/mongodb-svgrepo-com.svg"
+            src="./mongodb-svgrepo-com.svg"
             alt="MongoDB"
             className="tech-icon"
           />
@@ -123,7 +127,7 @@ export default function About({
           style={{ top: "83%", left: "28%", animationDelay: "4.1s" }}
         >
           <img
-            src="/logo-ts-svgrepo-com.svg"
+            src="./logo-ts-svgrepo-com.svg"
             alt="TypeScript"
             className="tech-icon"
           />
@@ -133,7 +137,7 @@ export default function About({
           style={{ top: "20%", left: "45%", animationDelay: "5.1s" }}
         >
           <img
-            src="/html-5-svgrepo-com.svg"
+            src="./html-5-svgrepo-com.svg"
             alt="HTML5"
             className="tech-icon"
           />
@@ -142,14 +146,14 @@ export default function About({
           className="floating-icon"
           style={{ top: "37%", left: "58%", animationDelay: "6.1s" }}
         >
-          <img src="/css-3-svgrepo-com.svg" alt="CSS3" className="tech-icon" />
+          <img src="./css-3-svgrepo-com.svg" alt="CSS3" className="tech-icon" />
         </div>
         <div
           className="floating-icon"
           style={{ top: "54%", right: "65%", animationDelay: "7.1s" }}
         >
           <img
-            src="/javascript-logo-svgrepo-com.svg"
+            src="./javascript-logo-svgrepo-com.svg"
             alt="JavaScript"
             className="tech-icon"
           />
@@ -161,7 +165,7 @@ export default function About({
           style={{ top: "25%", left: "75%", animationDelay: "8.1s" }}
         >
           <img
-            src="/assaf-photo-1.png"
+            src="./assaf-photo-1.png"
             alt="Assaf Personal"
             className="tech-icon rounded-full"
             loading="lazy"
@@ -177,7 +181,7 @@ export default function About({
           style={{ top: "45%", right: "75%", animationDelay: "9.1s" }}
         >
           <img
-            src="/assaf-photo-2.png"
+            src="./assaf-photo-2.png"
             alt="Assaf Personal"
             className="tech-icon rounded-full"
             loading="lazy"
@@ -193,7 +197,7 @@ export default function About({
           style={{ top: "65%", left: "85%", animationDelay: "10.1s" }}
         >
           <img
-            src="/assaf-photo-3.png"
+            src="./assaf-photo-3.png"
             alt="Assaf Personal"
             className="tech-icon rounded-full"
             loading="lazy"
