@@ -53,9 +53,7 @@ function App() {
           "JWT Auth",
         ],
         image: "project1.jpg",
-        screenshots: [
-          "project1.jpg",
-        ],
+        screenshots: ["project1.jpg"],
       },
       {
         id: 2,
@@ -363,7 +361,7 @@ function App() {
               {/* Personal Image - Behind headings with animation */}
               <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10">
                 <img
-                  src="/assaf-profile-image.png"
+                  src="/mainPic.png"
                   alt="Assaf"
                   className="w-full h-full object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
                   loading="lazy"
