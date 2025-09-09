@@ -365,7 +365,7 @@ function App() {
               {/* Personal Image - Behind headings with animation */}
               <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-80 z-0">
                 <img
-                  src="/תמונת תדמית (2).png"
+                  src="/assaf-profile-image.png"
                   alt="Assaf"
                   className="h-150 object-cover rounded-full shadow-2xl animate-float magnetic glow-on-hover"
                   loading="eager"
