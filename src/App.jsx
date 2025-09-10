@@ -11,6 +11,7 @@ import {
 } from "react";
 import Navbar from "./components/Navbar";
 import { translations } from "./translations";
+import ChatBot from "./components/ChatBot";
 
 // 🚀 PERFORMANCE OPTIMIZATION: Dynamic imports for code splitting
 const About = lazy(() => import("./components/About"));
@@ -195,10 +196,12 @@ function App() {
   }, [currentPage]);
 
   return (
+    
     <div
       className="min-h-screen bg-white text-black overflow-x-hidden"
       dir={currentLanguage === "he" ? "rtl" : "ltr"}
     >
+      <ChatBot/>
       <Navbar
         onNavigate={scrollToSection}
         currentLanguage={currentLanguage}
@@ -378,8 +381,9 @@ function App() {
 
           {/* Projects Section - Full Screen Projects */}
           <section
+        
             id="projects"
-            className="relative overflow-hidden digital-background min-h-screen"
+            className="projects relative overflow-hidden digital-background min-h-screen"
           >
             {/* Header */}
             <div className="w-full flex flex-col items-center justify-center pt-0 animate-fade-up">

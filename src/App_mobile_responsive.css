@@ -44,7 +44,7 @@
 @media (max-width: 768px) {
   .hero {
     min-height: 90vh;
-    padding: 4rem 1rem 2rem;
+    padding: 10px;
   }
 
   .hero-content {
@@ -65,7 +65,7 @@
 @media (max-width: 480px) {
   .hero {
     min-height: 85vh;
-    padding: 3rem 0.5rem 1.5rem;
+    padding: 20px;
   }
 
   .hero-image {
@@ -76,6 +76,7 @@
 
   .hero-content {
     margin-top: -20px;
+    padding: 20px;
   }
 
   .scroll-indicator {
@@ -85,6 +86,7 @@
 
 /* ===== MOBILE CSS CAROUSEL PROJECTS ===== */
 @media (max-width: 1024px) {
+ 
   .projects-carousel-container {
     height: auto;
     min-height: 80vh;
@@ -98,6 +100,9 @@
 
   .project-content-fullscreen {
     animation: mobileSlideIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+  }
+   .projects{
+    padding: 20px;
   }
 
   @keyframes mobileSlideIn {
@@ -130,8 +135,10 @@
 }
 
 @media (max-width: 768px) {
+ 
+ 
   .projects-carousel-container {
-    padding: 2rem 0;
+    padding: 20px;
     min-height: 70vh;
   }
 
@@ -199,6 +206,9 @@
 }
 
 @media (max-width: 480px) {
+  .projects{
+    padding: 20px;
+  }
   .project-content-fullscreen {
     padding: 0.75rem;
   }
