@@ -432,7 +432,7 @@
   /* Futuristic Welcome Message */
   .welcome-message {
     text-align: center;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(240, 33, 33, 0.879);
     font-size: 15px;
     line-height: 1.6;
     padding: 25px;
@@ -464,6 +464,7 @@
   
   .welcome-message p {
     margin: 0 0 15px 0;
+    color: rgba(0, 0, 0, 0.879);
   }
   
   .welcome-message p:last-child {

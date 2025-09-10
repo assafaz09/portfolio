@@ -50,7 +50,8 @@ const ChatBot = () => {
     if (
       message.includes("איפה") ||
       message.includes("מקום") ||
-      message.includes("גר")
+      message.includes("גר") ||
+      message.includes("מגורים")
     ) {
       return `אסף גר ב${personalData.location}.`;
     }
@@ -195,7 +196,8 @@ const ChatBot = () => {
           <div className="chatbot-messages">
             {messages.length === 0 && (
               <div className="welcome-message">
-                <p>שלום! אני הבוט של אסף. איך אני יכול לעזור לך?</p>
+                <p>שלום! אני הבוט של אסף.
+                   איך אני יכול לעזור לך</p>
                 <p>
                   אתה יכול לשאול על: גיל, מקום מגורים, השכלה, כישורים, תחביבים
                   ועוד!
