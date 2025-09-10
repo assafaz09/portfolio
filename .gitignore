@@ -25,23 +25,20 @@ dist-ssr
 
 # ===== IMAGES & ASSETS IGNORE =====
 # Personal images and photos
-public/*.png
-public/*.jpg
-public/*.jpeg
+
 public/*.gif
 public/*.webp
 public/*.bmp
 public/*.tiff
 
 # Documents
-public/*.pdf
+
 public/*.doc
 public/*.docx
 
 # Keep only essential SVG icons (tech stack icons)
 public/*
-!public/*.svg
-!public/vite.svg
+
 
 # Keep essential images for the portfolio
 !public/assaf's logo (1).png

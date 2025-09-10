@@ -330,9 +330,9 @@ function App() {
 
             <div className="circuit-line"></div>
 
-            <div className="hero-content text-center z-10 relative pt-20">
+            <div  className="hero-content text-center z-10 relative flex flex-col items-center justify-center min-h-screen ">
               {/* Personal Image - Behind headings with animation */}
-              <div className="hero-image absolute -top-20 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10">
+              <div style={{marginBottom:"-80px"}} className="hero-image absolute top-17 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10">
                 <img
                   src="./mainPic.png"
                   alt="Assaf"
@@ -341,13 +341,11 @@ function App() {
                   decoding="async"
                   onError={(e) => {
                     console.error("Failed to load image:", e.target.src);
-                    e.target.src = "/assaf-profile-image.png"; // Fallback image
+                    e.target.src = "./mainPic.png"; // Fallback image
                   }}
                   style={{
-                    scale: "0.7",
+                    scale: "0.9",
                     filter: "drop-shadow(0 0 25px rgba(6, 182, 212, 0.7))",
-                    margin: "20px",
-                    marginLeft: "40px",
                   }}
                 />
               </div>
@@ -356,7 +354,7 @@ function App() {
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
                   Assaf Azran
                 </h1>
-                <h2 className="text-lg sm:text-xl lg:text-2xl text-white/90 font-medium mb-6 lg:mb-8 drop-shadow-lg">
+                <h2 className="text-lg sm:text-xl lg:text-2xl text-white/90 font-medium  lg:mb-8 drop-shadow-lg">
                   {translations[currentLanguage].heroTitle}
                 </h2>
 
