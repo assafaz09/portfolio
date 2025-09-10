@@ -35,7 +35,7 @@ export default function Navbar({
   const handleDownloadCV = () => {
     // קישור ישיר ל-Google Drive (תחליף את הקישור שלך)
     const googleDriveLink =
-      "https://drive.google.com/file/d/1MmzYrFHuTSEOsOkSKw_rA2H70qIRcrNQ/view?usp=sharing";
+      "https://drive.google.com/file/d/1iu0WuLeJ2eVPjoFI73v3IEYJrGMMsOQO/view?usp=sharing";
 
     const link = document.createElement("a");
     link.href = googleDriveLink;
