@@ -57,16 +57,11 @@ function App() {
         emoji: "🎓",
         link: "https://f-student-system-production.up.railway.app/",
         description: translations[currentLanguage].studentSystemDesc,
-        technologies: [
-          "React.js",
-          "Node.js",
-          "MongoDB",
-          "Express.js",
-          "JWT Auth",
-        ],
+        technologies: ["React.js", "Node.js", "MongoDB", "Express.js"],
         image: "project1.jpg",
         screenshots: ["project1.jpg"],
       },
+
       {
         id: 2,
         title: translations[currentLanguage].movieRate,
@@ -86,15 +81,15 @@ function App() {
         id: 3,
         title: translations[currentLanguage].eventStore,
         emoji: "🎪",
-        link: "#",
+        link: "https://github.com/assafaz09/cover-letter-buddy.git",
         description: translations[currentLanguage].eventStoreDesc,
         technologies: [
           "React.js",
+          "TailwindCSS",
           "Node.js",
-          "MongoDB",
           "Express.js",
-          "Stripe API",
-          "Responsive Design",
+          "OpenAI API",
+         
         ],
         image: "🎪",
       },
@@ -196,12 +191,11 @@ function App() {
   }, [currentPage]);
 
   return (
-    
     <div
       className="min-h-screen bg-white text-black overflow-x-hidden"
       dir={currentLanguage === "he" ? "rtl" : "ltr"}
     >
-      <ChatBot/>
+      <ChatBot />
       <Navbar
         onNavigate={scrollToSection}
         currentLanguage={currentLanguage}
@@ -333,9 +327,12 @@ function App() {
 
             <div className="circuit-line"></div>
 
-            <div  className="hero-content text-center z-10 relative flex flex-col items-center justify-center min-h-screen ">
+            <div className="hero-content text-center z-10 relative flex flex-col items-center justify-center min-h-screen ">
               {/* Personal Image - Behind headings with animation */}
-              <div style={{marginBottom:"-80px"}} className="hero-image absolute top-17 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10">
+              <div
+                style={{ marginBottom: "-80px" }}
+                className="hero-image absolute top-17 left-1/2 transform -translate-x-1/2 w-80 h-80 opacity-90 z-10"
+              >
                 <img
                   src="./mainPic.png"
                   alt="Assaf"
@@ -381,7 +378,6 @@ function App() {
 
           {/* Projects Section - Full Screen Projects */}
           <section
-        
             id="projects"
             className="projects relative overflow-hidden digital-background min-h-screen"
           >
@@ -570,6 +566,7 @@ function App() {
                         <div className="flex flex-wrap gap-2 mb-6 animate-fade-up justify-center lg:justify-start">
                           {project.technologies.map((tech, i) => (
                             <span
+                            style={{padding: "10px 24px", background: "rgba(255, 255, 255, 0.1)", border: "1px solid rgba(255, 255, 255, 0.2)", }}
                               key={i}
                               className="px-3 lg:px-4 py-1 lg:py-2 rounded-full bg-white/10 text-white text-xs lg:text-sm backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
                             >
@@ -672,7 +669,7 @@ function App() {
                             />
                           ) : project.id === 3 ? (
                             <img
-                              src="./P3.jpg"
+                              src="./ai post.png"
                               alt="Event Production E-commerce"
                               loading="lazy"
                               decoding="async"

@@ -20,7 +20,7 @@ export const translations = {
     // Project titles
     studentSystem: "Student Management System",
     movieRate: "BestMovie Rate",
-    eventStore: "Event Production Store",
+    eventStore: "cover letter buddy",
     portfolioLanding: "Portfolio & Landing Pages",
 
     // Project descriptions
@@ -29,7 +29,7 @@ export const translations = {
     movieRateDesc:
       "Interactive movie rating and review platform where users can discover, rate, and review their favorite films with a modern and intuitive interface.",
     eventStoreDesc:
-      "E-commerce platform for event production services including planning, catering, decorations, and entertainment with integrated booking and payment systems.",
+      " Create personalized and accurate cover letters by analyzing job descriptions using AI. Achieving an intuitive user experience by designing a responsive user interface. ",
     portfolioLandingDesc:
       "Collection of professional portfolio websites and landing pages showcasing modern design, responsive layouts, and creative user experiences for various clients and projects.",
 
@@ -178,7 +178,7 @@ export const translations = {
     movieRateDesc:
       "פלטפורמה אינטראקטיבית לדירוג וסקירת סרטים בה משתמשים יכולים לגלות, לדרג ולסקור את הסרטים האהובים עליהם עם ממשק מודרני ואינטואיטיבי.",
     eventStoreDesc:
-      "פלטפורמת מסחר אלקטרוני לשירותי הפקת אירועים כולל תכנון, קייטרינג, קישוטים ובידור עם מערכות הזמנה ותשלום משולבות.",
+      "יצירת מכתבים מקדימים לשליחת קורות חיים בעזרת מערכת בינה מלאכותית שמנתחת תיאורי משרות. השגת חוויית משתמש אינטואיטיבית על ידי עיצוב ממשק משתמש רספונסיבי.",
     portfolioLandingDesc:
       "אוסף של אתרי פורטפוליו מקצועיים ודפי נחיתה המציגים עיצוב מודרני, פריסות רספונסיביות וחוויות משתמש יצירתיות עבור לקוחות ופרוייקטים שונים.",
 
