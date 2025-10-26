@@ -35,11 +35,11 @@ export default function Navbar({
   const handleDownloadCV = () => {
     // קישור ישיר ל-Google Drive (תחליף את הקישור שלך)
     const googleDriveLink =
-      "https://drive.google.com/file/d/1iu0WuLeJ2eVPjoFI73v3IEYJrGMMsOQO/view?usp=sharing";
+      "https://drive.google.com/file/d/1nR9G0nfYLNzalqt7xl-LsER71-n4nK2i/view?usp=drive_link";
 
     const link = document.createElement("a");
     link.href = googleDriveLink;
-    link.download = "Assaf_Azran_CV.pdf";
+    link.download = "Assaf azran cv_____.pdf";
     link.target = "_blank"; // פותח בטאב חדש
     document.body.appendChild(link);
     link.click();
