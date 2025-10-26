@@ -89,7 +89,6 @@ function App() {
           "Node.js",
           "Express.js",
           "OpenAI API",
-         
         ],
         image: "🎪",
       },
@@ -566,7 +565,11 @@ function App() {
                         <div className="flex flex-wrap gap-2 mb-6 animate-fade-up justify-center lg:justify-start">
                           {project.technologies.map((tech, i) => (
                             <span
-                            style={{padding: "10px 24px", background: "rgba(255, 255, 255, 0.1)", border: "1px solid rgba(255, 255, 255, 0.2)", }}
+                              style={{
+                                padding: "10px 24px",
+                                background: "rgba(255, 255, 255, 0.1)",
+                                border: "1px solid rgba(255, 255, 255, 0.2)",
+                              }}
                               key={i}
                               className="px-3 lg:px-4 py-1 lg:py-2 rounded-full bg-white/10 text-white text-xs lg:text-sm backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300"
                             >
@@ -1249,69 +1252,107 @@ function App() {
               animationDelay="10.3s"
             />
 
-            <div className="container px-4">
-              <div className="animate-fade-right">
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl text-center mb-6 lg:mb-8 text-white drop-shadow-lg">
+            <div className="container px-4 flex items-center justify-center min-h-[60vh]">
+              <div className="animate-fade-right w-full flex flex-col items-center">
+                <h2 className="text-2xl sm:text-3xl lg:text-5xl text-center mb-6 lg:mb-12 text-white drop-shadow-lg">
                   Get In Touch
                 </h2>
 
-                <div className="contact-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 animate-fade-up">
-                  <div
-                    style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
-                  >
-                    <h3 className="contact-label text-white text-lg lg:text-xl">
-                      Phone
-                    </h3>
-                    <p className="contact-value text-cyan-400 text-base lg:text-lg">
-                      054-949-8551
-                    </p>
-                  </div>
-
-                  <div
-                    style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
-                  >
-                    <h3 className="contact-label text-white text-lg lg:text-xl">
-                      Email
-                    </h3>
-                    <p className="contact-value text-cyan-400 text-base lg:text-lg break-all">
-                      assafaz09@gmail.com
-                    </p>
-                  </div>
-
-                  <div
-                    style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
-                  >
-                    <h3 className="contact-label text-white text-lg lg:text-xl">
-                      GitHub
-                    </h3>
-                    <a
-                      href="https://github.com/assafaz09"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="contact-value text-cyan-400 hover:text-cyan-300 transition-colors text-base lg:text-lg break-all"
+                <div className="contact-grid flex flex-col items-center justify-center gap-4 sm:gap-6 lg:gap-8 animate-fade-up">
+                  {/* שורה ראשונה - שתי כרטיסיות */}
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center w-full">
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        border: "1px solid white",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      className="contact-item bg-black border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl sm:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect w-full sm:w-[240px] lg:w-[280px] h-[120px] sm:h-[130px] lg:h-[140px]"
                     >
-                      github.com/assafaz09
-                    </a>
+                      <h3 className="contact-label text-white text-base sm:text-lg lg:text-xl font-semibold">
+                        Phone
+                      </h3>
+                      <p className="contact-value text-cyan-400 text-sm sm:text-base lg:text-lg">
+                        054-949-8551
+                      </p>
+                    </div>
+
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        border: "1px solid white",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      className="contact-item bg-black border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl sm:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect w-full sm:w-[240px] lg:w-[280px] h-[120px] sm:h-[130px] lg:h-[140px]"
+                    >
+                      <h3 className="contact-label text-white text-base sm:text-lg lg:text-xl font-semibold">
+                        Email
+                      </h3>
+                      <p className="contact-value text-cyan-400 text-sm sm:text-base lg:text-lg break-all px-2">
+                        assafaz09@gmail.com
+                      </p>
+                    </div>
                   </div>
 
-                  <div
-                    style={{ backgroundColor: "black" }}
-                    className="contact-item bg-black border border-white/20 rounded-xl lg:rounded-2xl p-6 lg:p-8 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect"
-                  >
-                    <h3 className="contact-label text-white text-lg lg:text-xl">
-                      LinkedIn
-                    </h3>
-                    <a
-                      href="https://www.linkedin.com/in/assafazran-developer"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="contact-value text-cyan-400 hover:text-cyan-300 transition-colors text-base lg:text-lg break-all"
+                  {/* שורה שנייה - שתי כרטיסיות */}
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 lg:gap-8 justify-center w-full">
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        border: "1px solid white",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      className="contact-item bg-black border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl sm:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect w-full sm:w-[240px] lg:w-[280px] h-[120px] sm:h-[130px] lg:h-[140px]"
                     >
-                      linkedin.com/in/assafazran-developer
-                    </a>
+                      <h3 className="contact-label text-white text-base sm:text-lg lg:text-xl font-semibold">
+                        GitHub
+                      </h3>
+                      <a
+                        href="https://github.com/assafaz09"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-value text-cyan-400 hover:text-cyan-300 transition-colors text-sm sm:text-base lg:text-lg break-all px-2"
+                      >
+                        github.com/assafaz09
+                      </a>
+                    </div>
+
+                    <div
+                      style={{
+                        backgroundColor: "black",
+                        border: "1px solid white",
+                        textAlign: "center",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      className="contact-item bg-black border border-white/20 rounded-lg sm:rounded-xl lg:rounded-2xl p-4 sm:p-6 lg:p-8 shadow-xl sm:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:-translate-y-2 magnetic glow-on-hover animate-scale-up ripple-effect w-full sm:w-[240px] lg:w-[280px] h-[120px] sm:h-[130px] lg:h-[140px]"
+                    >
+                      <h3 className="contact-label text-white text-base sm:text-lg lg:text-xl font-semibold">
+                        LinkedIn
+                      </h3>
+                      <a
+                        href="https://www.linkedin.com/in/assafazran"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="contact-value text-cyan-400 hover:text-cyan-300 transition-colors text-sm sm:text-base lg:text-lg break-all px-2"
+                      >
+                        linkedin.com/in/assafazran
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
