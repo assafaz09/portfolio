@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { translations } from "../translations";
+
+const NAV_LINKS = [
+  { label: "HOME", section: "home" },
+  // Change "ABOUT" nav: preserve the label but send to #about instead of "about" page
+  { label: "ABOUT", section: "about-section" },
+  { label: "EXPERIENCE", section: "experience" },
+  { label: "SKILLS", section: "skills" },
+  { label: "EDUCATION", section: "education" },
+  { label: "LETS TALK", section: "contact" },
+];
 
 export default function Navbar({
   onNavigate,
-  currentLanguage,
-  onLanguageChange,
+  currentLanguage, // still passed in, but not used (can be removed if unused elsewhere)
 }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -21,29 +29,24 @@ export default function Navbar({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu when navigating
+  // Custom navigation: "ABOUT" goes to #about section of main page
   const handleNavigation = (section) => {
     setActiveSection(section);
     setIsMenuOpen(false);
-    // Call onNavigate first to ensure navigation happens
-    if (onNavigate) {
-      onNavigate(section);
+
+    if (section === "about-section") {
+      // Use scroll to about section in the main page
+      const aboutElem = document.getElementById("about");
+      if (aboutElem) {
+        // Smooth scroll to the about section
+        aboutElem.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (onNavigate) {
+        // fallback for SPA navigation
+        onNavigate("about");
+      }
+    } else {
+      if (onNavigate) onNavigate(section);
     }
-  };
-
-  // Handle CV download - using fetch with fallback
-  const handleDownloadCV = () => {
-    // קישור ישיר ל-Google Drive (תחליף את הקישור שלך)
-    const googleDriveLink =
-      "https://drive.google.com/file/d/1nR9G0nfYLNzalqt7xl-LsER71-n4nK2i/view?usp=drive_link";
-
-    const link = document.createElement("a");
-    link.href = googleDriveLink;
-    link.download = "Assaf azran cv_____.pdf";
-    link.target = "_blank"; // פותח בטאב חדש
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   return (
@@ -83,97 +86,25 @@ export default function Navbar({
 
           {/* Desktop Navigation - Spread across full width */}
           <div className="hidden md:flex flex-1 justify-center">
-            <div className="flex items-center justify-between max-w-xl w-full px-6">
-              <button
-                onClick={() => handleNavigation("home")}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                  activeSection === "home"
-                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg shadow-cyan-500/25"
-                    : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
-                }`}
-              >
-                {translations[currentLanguage].home}
-              </button>
-              <button
-                onClick={() => handleNavigation("about")}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                  activeSection === "about"
-                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg shadow-cyan-500/25"
-                    : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
-                }`}
-              >
-                {translations[currentLanguage].about}
-              </button>
-              <button
-                onClick={() => handleNavigation("portfolio")}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                  activeSection === "portfolio"
-                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg shadow-cyan-500/25"
-                    : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
-                }`}
-              >
-                {translations[currentLanguage].portfolio}
-              </button>
-              <button
-                onClick={() => handleNavigation("contact")}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-                  activeSection === "contact"
-                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg shadow-cyan-500/25"
-                    : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
-                }`}
-              >
-                {translations[currentLanguage].contact}
-              </button>
+            <div className="flex items-center justify-between max-w-2xl w-full px-6">
+              {NAV_LINKS.map((nav) => (
+                <button
+                  key={nav.section}
+                  onClick={() => handleNavigation(nav.section)}
+                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                    activeSection === nav.section
+                      ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg shadow-cyan-500/25"
+                      : "text-white hover:bg-white/10 hover:text-cyan-300 hover:shadow-md"
+                  }`}
+                >
+                  {nav.label}
+                </button>
+              ))}
             </div>
           </div>
 
           <div className="hidden md:flex items-center space-x-3">
-            {/* Language Switcher */}
-            <button
-              onClick={() =>
-                onLanguageChange(currentLanguage === "en" ? "he" : "en")
-              }
-              className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 transform hover:scale-105 border ${
-                isScrolled || isMenuOpen
-                  ? "bg-white/10 hover:bg-white/20 text-white border-white/20 hover:border-cyan-400/40"
-                  : "bg-white/5 hover:bg-white/15 text-white border-white/10 hover:border-white/30"
-              }`}
-              title={translations[currentLanguage].language}
-            >
-              <span className="flex items-center space-x-1">
-                <span className="text-xs">🌍</span>
-                <span>{currentLanguage === "en" ? "עברית" : "EN"}</span>
-              </span>
-            </button>
-
-            {/* Download CV Button */}
-            <button
-              onClick={handleDownloadCV}
-              className={`bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-2 rounded-xl font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/25 hover:-translate-y-0.5 transform hover:scale-105 border ${
-                isScrolled || isMenuOpen
-                  ? "border-cyan-400/30"
-                  : "border-white/20"
-              }`}
-            >
-              <span className="flex items-center space-x-1.5">
-                <svg
-                  className="w-3.5 h-3.5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                <span className="text-sm">
-                  {translations[currentLanguage].downloadCV}
-                </span>
-              </span>
-            </button>
+            {/* Reserved area for right-aligned desktop items, if needed */}
           </div>
 
           <div className="md:hidden">
@@ -229,80 +160,19 @@ export default function Navbar({
       {isMenuOpen && (
         <div className="md:hidden transition-all duration-300 opacity-100 visible">
           <div className="px-4 pt-4 pb-6 space-y-3 border-t shadow-xl bg-black/40 md:bg-black/50 border-cyan-500/20">
-            <button
-              onClick={() => handleNavigation("home")}
-              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                activeSection === "home"
-                  ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg"
-                  : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
-              }`}
-            >
-              {translations[currentLanguage].home}
-            </button>
-            <button
-              onClick={() => handleNavigation("about")}
-              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                activeSection === "about"
-                  ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg"
-                  : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
-              }`}
-            >
-              {translations[currentLanguage].about}
-            </button>
-            <button
-              onClick={() => handleNavigation("portfolio")}
-              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                activeSection === "portfolio"
-                  ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg"
-                  : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
-              }`}
-            >
-              {translations[currentLanguage].portfolio}
-            </button>
-            <button
-              onClick={() => handleNavigation("contact")}
-              className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
-                activeSection === "contact"
-                  ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg"
-                  : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
-              }`}
-            >
-              {translations[currentLanguage].contact}
-            </button>
-            {/* Language Switcher for Mobile */}
-            <button
-              onClick={() =>
-                onLanguageChange(currentLanguage === "en" ? "he" : "en")
-              }
-              className="language-switcher-mobile block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 border border-white/20 hover:border-cyan-400/40 bg-white/5 hover:bg-white/10 text-white hover:text-cyan-300"
-            >
-              <span className="flex items-center space-x-2">
-                <span className="text-sm">🌍</span>
-                <span>{currentLanguage === "en" ? "עברית" : "English"}</span>
-              </span>
-            </button>
-
-            <button
-              onClick={handleDownloadCV}
-              className="block w-full text-left bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-4 py-3 rounded-xl font-semibold transition-all duration-300 mt-4 border border-cyan-400/30 hover:shadow-lg"
-            >
-              <span className="flex items-center space-x-2">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-                <span>{translations[currentLanguage].downloadCV}</span>
-              </span>
-            </button>
+            {NAV_LINKS.map((nav) => (
+              <button
+                key={nav.section}
+                onClick={() => handleNavigation(nav.section)}
+                className={`block w-full text-left px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
+                  activeSection === nav.section
+                    ? "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border border-cyan-400/40 shadow-lg"
+                    : "text-white hover:bg-white/10 hover:text-cyan-300 border border-transparent hover:border-white/20"
+                }`}
+              >
+                {nav.label}
+              </button>
+            ))}
           </div>
         </div>
       )}
