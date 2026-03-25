@@ -44,7 +44,8 @@ export default function Skills({ currentLanguage = "en" }) {
         {/* Floating Tech Icons for Skills */}
         <IconsBg />
 
-        <div className="max-w-4xl lg:max-w-6xl mx-auto relative z-10 px-4">
+        <div className="w-full flex justify-center z-10 px-4">
+          <div className="max-w-4xl lg:max-w-6xl w-full relative">
           <div className="flex flex-col items-center text-center">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white animate-fade-left">
               {t.skillsTitle}
@@ -209,6 +210,7 @@ export default function Skills({ currentLanguage = "en" }) {
                 <span className="text-white">&#125;;</span>
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>

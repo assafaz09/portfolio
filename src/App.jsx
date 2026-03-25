@@ -22,6 +22,15 @@ function App() {
   const observerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLanguage, setCurrentLanguage] = useState("en");
+  // TODO: replace with your personal agent URL
+  const MY_AGENT_URL = "YOUR_MY_AGENT_URL_HERE";
+  const isMyAgentUrlSet =
+    MY_AGENT_URL && !MY_AGENT_URL.includes("YOUR_MY_AGENT_URL_HERE");
+  const agentRedirectText =
+    currentLanguage === "he"
+      ? "מעביר לסוכן האישי שלי"
+      : "Redirecting to my personal agent";
+  const openAgentLabel = currentLanguage === "he" ? "פתח סוכן" : "Open Agent";
 
   // 🚀 PERFORMANCE OPTIMIZATION: Memoize expensive computations
 
@@ -153,6 +162,42 @@ function App() {
                   the gap between robust web architectures and Agentic AI.
                   Expert in building scalable systems
                 </p>
+
+                {/* Personal Agent Redirect (external link) */}
+                <div className="mt-8 flex justify-center animate-fade-up animate-delay-200">
+                  <div className="agent-cta-card" aria-label="My Agent CTA">
+                    <div className="agent-cta-header">
+                      <span className="agent-cta-dot" aria-hidden="true" />
+                      <span className="agent-cta-badge">MY AGENT</span>
+                    </div>
+
+                    <p className="agent-cta-text">{agentRedirectText}</p>
+
+                    <div className="agent-cta-actions">
+                      {isMyAgentUrlSet ? (
+                        <a
+                          className="agent-cta-button"
+                          href={MY_AGENT_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <span>{openAgentLabel}</span>
+                          <span className="agent-cta-button-icon">-&gt;</span>
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          className="agent-cta-button agent-cta-button--disabled"
+                          disabled
+                          title="Add your MY AGENT URL in App.jsx"
+                        >
+                          <span>{openAgentLabel}</span>
+                          <span className="agent-cta-button-icon">-&gt;</span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Dynamic Scroll Down Indicator */}
