@@ -363,7 +363,7 @@ function App() {
           </section>
 
           {/* Skills Section */}
-          <Skills />
+          <Skills currentLanguage={currentLanguage} />
 
           {/* Education Section */}
           <section id="education" className="education digital-background">
