@@ -177,7 +177,7 @@ function App() {
                       {isMyAgentUrlSet ? (
                         <a
                           className="agent-cta-button"
-                          href={MY_AGENT_URL}
+                          href="https://my-agent-v5xn.vercel.app/"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -188,7 +188,7 @@ function App() {
                         <button
                           type="button"
                           className="agent-cta-button agent-cta-button--disabled"
-                          disabled
+                          
                           title="Add your MY AGENT URL in App.jsx"
                         >
                           <span>{openAgentLabel}</span>
