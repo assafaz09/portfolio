@@ -55,8 +55,8 @@ export default function Navbar({
         isScrolled
           ? "bg-black/20 md:bg-black/30 backdrop-blur-sm md:backdrop-blur-lg border-b border-cyan-500/20 shadow-lg"
           : isMenuOpen
-          ? "bg-black/20 md:bg-black/30 border-b border-cyan-500/20 shadow-lg"
-          : "bg-transparent border-b border-transparent"
+            ? "bg-black/20 md:bg-black/30 border-b border-cyan-500/20 shadow-lg"
+            : "bg-transparent border-b border-transparent"
       }`}
       dir={currentLanguage === "he" ? "rtl" : "ltr"}
     >

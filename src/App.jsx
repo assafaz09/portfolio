@@ -179,7 +179,7 @@ function App() {
                       {isMyAgentUrlSet ? (
                         <a
                           className="agent-cta-button"
-                          href={MY_AGENT_URL}
+                          href="https://assafai.xyz/"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
