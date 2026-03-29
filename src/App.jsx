@@ -22,10 +22,12 @@ function App() {
   const observerRef = useRef(null);
   const [currentPage, setCurrentPage] = useState("home");
   const [currentLanguage, setCurrentLanguage] = useState("en");
-  // TODO: replace with your personal agent URL
-  const MY_AGENT_URL = "YOUR_MY_AGENT_URL_HERE";
-  const isMyAgentUrlSet =
-    MY_AGENT_URL && !MY_AGENT_URL.includes("YOUR_MY_AGENT_URL_HERE");
+  // Personal agent (new tab). Override with VITE_MY_AGENT_URL in .env if you prefer.
+  const MY_AGENT_URL = (
+    import.meta.env.VITE_MY_AGENT_URL ||
+    "https://my-agent-v5xn.vercel.app/"
+  ).trim();
+  const isMyAgentUrlSet = /^https?:\/\//i.test(MY_AGENT_URL);
   const agentRedirectText =
     currentLanguage === "he"
       ? "מעביר לסוכן האישי שלי"
@@ -167,7 +169,7 @@ function App() {
                 <div className="mt-8 flex justify-center animate-fade-up animate-delay-200">
                   <div className="agent-cta-card" aria-label="My Agent CTA">
                     <div className="agent-cta-header">
-                      <span className="agent-cta-dot" aria-hidden="true" />
+                      <span className="agent-cta-dot" />
                       <span className="agent-cta-badge">MY AGENT</span>
                     </div>
 
@@ -177,7 +179,7 @@ function App() {
                       {isMyAgentUrlSet ? (
                         <a
                           className="agent-cta-button"
-                          href="https://my-agent-v5xn.vercel.app/"
+                          href={MY_AGENT_URL}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -188,8 +190,12 @@ function App() {
                         <button
                           type="button"
                           className="agent-cta-button agent-cta-button--disabled"
-                          
-                          title="Add your MY AGENT URL in App.jsx"
+                          disabled
+                          title={
+                            currentLanguage === "he"
+                              ? "הוסף כתובת לסוכן ב־VITE_MY_AGENT_URL או ב־App.jsx"
+                              : "Set VITE_MY_AGENT_URL or MY_AGENT_URL in App.jsx"
+                          }
                         >
                           <span>{openAgentLabel}</span>
                           <span className="agent-cta-button-icon">-&gt;</span>
