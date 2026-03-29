@@ -25,7 +25,7 @@ function App() {
   // Personal agent (new tab). Override with VITE_MY_AGENT_URL in .env if you prefer.
   const MY_AGENT_URL = (
     import.meta.env.VITE_MY_AGENT_URL ||
-    "https://my-agent-v5xn.vercel.app/"
+    "https://my-agent-v5xn-assafs-projects-dad2b9ad.vercel.app/"
   ).trim();
   const isMyAgentUrlSet = /^https?:\/\//i.test(MY_AGENT_URL);
   const agentRedirectText =
